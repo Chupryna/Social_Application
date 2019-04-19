@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Social application</string>
+    <string name="email">Електронна пошта</string>
+    <string name="password">Пароль</string>
+    <string name="show_password">Показати пароль</string>
+    <string name="sign_in">Увійти</string>
 </resources>
