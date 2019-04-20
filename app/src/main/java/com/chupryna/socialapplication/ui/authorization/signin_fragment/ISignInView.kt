@@ -6,9 +6,9 @@ interface ISignInView {
 
     fun hidePassword()
 
-    //fun isDataValid(): Boolean
+    fun showProgress()
 
-    fun attemptAuth()
+    fun hideProgress()
 
     fun showEmailError(msg: String)
 
@@ -17,4 +17,8 @@ interface ISignInView {
     fun hideEmailError()
 
     fun hidePasswordError()
+
+    fun showAuthFailed(msg: String)
+
+    fun hideKeyboard()
 }

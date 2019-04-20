@@ -6,12 +6,13 @@ import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.chupryna.socialapplication.R
+import com.chupryna.socialapplication.ui.authorization.AuthorizationActivity
 import kotlinx.android.synthetic.main.fragment_signin.*
 
 class SignInFragment : Fragment(), ISignInView {
-
 
     private val presenter by lazy { SingInPresenter(this) }
 
@@ -42,12 +43,6 @@ class SignInFragment : Fragment(), ISignInView {
         passwordEt.setSelection(passwordEt.length())
     }
 
-
-
-    override fun attemptAuth() {
-
-    }
-
     override fun showEmailError(msg: String) {
         emailEt.error = msg
         emailEt.requestFocus()
@@ -66,4 +61,19 @@ class SignInFragment : Fragment(), ISignInView {
         passwordEt.error = null
     }
 
+    override fun showProgress() {
+        (activity as AuthorizationActivity).showProgress()
+    }
+
+    override fun hideProgress() {
+        (activity as AuthorizationActivity).hideProgress()
+    }
+
+    override fun showAuthFailed(msg: String) {
+        (activity as AuthorizationActivity).showToast(msg)
+    }
+
+    override fun hideKeyboard() {
+        (activity as AuthorizationActivity).hideKeyboard(this.view!!)
+    }
 }
