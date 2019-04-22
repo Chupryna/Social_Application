@@ -72,7 +72,7 @@ class SignUpFragment : Fragment(), ISignUpView {
     }
 
     override fun showSignIn() {
-        (activity as AuthorizationActivity).replaceFragment(SignInFragment())
+        (activity as AuthorizationActivity).presenter.onChangeFragment(SignInFragment())
     }
 
 }

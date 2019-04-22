@@ -9,4 +9,7 @@
     <string name="full_name">Повне ім\'я</string>
     <string name="sign_up">Зареєструватися</string>
     <string name="do_not_have_account">Не маєте облікового запису? Зареєструйтесь</string>
+    <string name="or">або</string>
+    <string name="reset_password">Відновити пароль</string>
+    <string name="auth">Авторизуйтесь</string>
 </resources>

@@ -1,16 +1,12 @@
 package com.chupryna.socialapplication.ui.authorization.signin_fragment
 
 import android.content.Context
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.widget.AppCompatSeekBar
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.chupryna.socialapplication.R
 import com.chupryna.socialapplication.ui.authorization.AuthorizationActivity
