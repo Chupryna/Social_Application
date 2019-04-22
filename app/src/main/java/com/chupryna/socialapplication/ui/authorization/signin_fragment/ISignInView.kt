@@ -1,5 +1,8 @@
 package com.chupryna.socialapplication.ui.authorization.signin_fragment
 
+import android.content.Context
+import com.google.firebase.auth.FirebaseUser
+
 interface ISignInView {
 
     fun showPassword()
@@ -21,4 +24,10 @@ interface ISignInView {
     fun showAuthFailed(msg: String)
 
     fun hideKeyboard()
+
+    fun getFragmentContext(): Context
+
+    fun showSignUp()
+
+    fun showSnackBarSendEmail(msg: String, action: String, user: FirebaseUser)
 }

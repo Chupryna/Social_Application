@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class AuthorizationActivity : AppCompatActivity(), IAuthorizationView {
 
-    private val presenter by lazy { AuthorizationPresenter(this) }
+    val presenter by lazy { AuthorizationPresenter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

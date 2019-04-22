@@ -1,5 +1,7 @@
 package com.chupryna.socialapplication.ui.authorization.signin_fragment
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -7,9 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatSeekBar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.chupryna.socialapplication.R
 import com.chupryna.socialapplication.ui.authorization.AuthorizationActivity
+import com.chupryna.socialapplication.ui.authorization.signup_fragment.SignUpFragment
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.fragment_signin.*
 
 class SignInFragment : Fragment(), ISignInView {
@@ -31,6 +38,7 @@ class SignInFragment : Fragment(), ISignInView {
         }
 
         signInBtn.setOnClickListener { presenter.onSignIn(emailEt.text.toString(), passwordEt.text.toString()) }
+        goToSignUpTv.setOnClickListener { presenter.onSignUp() }
     }
 
     override fun showPassword() {
@@ -75,5 +83,20 @@ class SignInFragment : Fragment(), ISignInView {
 
     override fun hideKeyboard() {
         (activity as AuthorizationActivity).hideKeyboard(this.view!!)
+    }
+
+    override fun getFragmentContext(): Context {
+        return context!!
+    }
+
+    override fun showSignUp() {
+        (activity as AuthorizationActivity).replaceFragment(SignUpFragment())
+    }
+
+    override fun showSnackBarSendEmail(msg: String, action: String, user: FirebaseUser) {
+        Snackbar
+            .make(this.view!!, msg, Snackbar.LENGTH_LONG)
+            .setAction(action) { presenter.sendEmailVerification(user) }
+            .show()
     }
 }

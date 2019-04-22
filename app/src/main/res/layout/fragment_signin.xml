@@ -37,6 +37,18 @@
             android:layout_height="wrap_content"
             android:text="@string/sign_in"/>
 
+        <TextView
+            android:id="@+id/goToSignUpTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent"
+            android:text="@string/do_not_have_account"
+            android:clickable="true"
+            android:focusable="true"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

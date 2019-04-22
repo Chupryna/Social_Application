@@ -5,4 +5,8 @@
     <string name="show_password">Показати пароль</string>
     <string name="sign_in">Увійти</string>
     <string name="auth_failed">Помилка аутентифікації</string>
+    <string name="confirm_password">Підтвердити пароль</string>
+    <string name="full_name">Повне ім\'я</string>
+    <string name="sign_up">Зареєструватися</string>
+    <string name="do_not_have_account">Не маєте облікового запису? Зареєструйтесь</string>
 </resources>

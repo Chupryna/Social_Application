@@ -1,13 +1,16 @@
 package com.chupryna.socialapplication.data.firebase
 
+import com.chupryna.socialapplication.data.model.User
+import com.google.firebase.auth.FirebaseUser
+
 interface IFirebaseAuth {
 
-    fun attemptSignIn(email: String, password: String, callback: AuthorizationCallback)
+    fun attemptSignIn(email: String, password: String, callback: FirebaseCallback)
 
-    fun createNewAccount(): Boolean
+    fun createNewAccount(user: User, callback: FirebaseCallback)
 
-    interface AuthorizationCallback {
-        fun onSuccess()
+    interface FirebaseCallback {
+        fun onSuccess(user: FirebaseUser)
 
         fun onFailure(msg: String)
     }
