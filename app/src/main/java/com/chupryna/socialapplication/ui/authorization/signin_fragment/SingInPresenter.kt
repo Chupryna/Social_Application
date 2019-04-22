@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.util.Patterns
 import com.chupryna.socialapplication.data.firebase.FirebaseAuthorization
 import com.chupryna.socialapplication.data.firebase.IFirebaseAuth
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
 
 
@@ -48,6 +49,20 @@ class SingInPresenter(private val view: ISignInView) {
 
             })
         }
+    }
+
+    fun firebaseSignInWithGoogle(account: GoogleSignInAccount) {
+        view.showProgress()
+        model.attemptSignInWithGoogle(account, object: IFirebaseAuth.FirebaseCallback {
+            override fun onSuccess(user: FirebaseUser) {
+                view.hideProgress()
+            }
+
+            override fun onFailure(msg: String) {
+                view.hideProgress()
+                view.showAuthFailed(msg)
+            }
+        })
     }
 
     fun onSignUp() {

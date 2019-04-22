@@ -1,6 +1,7 @@
 package com.chupryna.socialapplication.data.firebase
 
 import com.chupryna.socialapplication.data.model.User
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
 
 interface IFirebaseAuth {
@@ -14,4 +15,6 @@ interface IFirebaseAuth {
 
         fun onFailure(msg: String)
     }
+
+    fun attemptSignInWithGoogle(account: GoogleSignInAccount, callback: FirebaseCallback)
 }

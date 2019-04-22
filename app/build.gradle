@@ -32,6 +32,7 @@ dependencies {
 
     //firebase
     implementation 'com.google.firebase:firebase-auth:16.2.1'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
     //test
     testImplementation 'junit:junit:4.12'
