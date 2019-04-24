@@ -1,7 +1,7 @@
 package com.chupryna.socialapplication.ui.main
 
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -9,7 +9,10 @@ import android.view.MenuItem
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
+import android.widget.TextView
 import com.chupryna.socialapplication.R
+import com.chupryna.socialapplication.ui.authorization.AuthorizationActivity
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -22,7 +25,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        initView()
         initListeners()
+    }
+
+    private fun initView() {
+        val user = intent.getParcelableExtra<FirebaseUser>("user")
+        val headerView = navigationView.getHeaderView(0)
+        headerView.findViewById<TextView>(R.id.fullName_user_tv).text = user.displayName
+        headerView.findViewById<TextView>(R.id.email_use_tv).text = user.email
     }
 
     private fun initListeners() {
@@ -54,10 +65,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+        when(item.itemId) {
+            //R.id.action_settings ->
+            R.id.action_quit -> presenter.onQuit()
         }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -83,5 +95,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun loadAuthActivity() {
+        val intent = Intent(this, AuthorizationActivity::class.java)
+        startActivity(intent)
     }
 }

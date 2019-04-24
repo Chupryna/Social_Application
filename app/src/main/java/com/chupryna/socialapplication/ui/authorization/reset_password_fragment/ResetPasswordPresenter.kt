@@ -4,7 +4,6 @@ import android.text.TextUtils
 import android.util.Patterns
 import com.chupryna.socialapplication.data.firebase.FirebaseAuthorization
 import com.chupryna.socialapplication.data.firebase.IFirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 
 class ResetPasswordPresenter(private val view: IResetPasswordView) {
 

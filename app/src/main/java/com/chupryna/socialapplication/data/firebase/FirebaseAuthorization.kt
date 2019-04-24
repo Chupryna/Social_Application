@@ -86,9 +86,7 @@ class FirebaseAuthorization : IFirebaseAuth {
     override fun sendPasswordReset(email: String, callback: IFirebaseAuth.FirebaseCallback) {
         val auth = FirebaseAuth.getInstance()
         auth.sendPasswordResetEmail(email)
-            .addOnSuccessListener {
-                callback.onSuccess()
-            }
+            .addOnSuccessListener { callback.onSuccess() }
             .addOnFailureListener { callback.onFailure("Не вдалося відправити лист. Перевірте правильність e-mail") }
     }
 
