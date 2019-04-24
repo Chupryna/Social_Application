@@ -7,7 +7,7 @@ import com.google.firebase.auth.*
 
 class FirebaseAuthorization : IFirebaseAuth {
 
-    override fun attemptSignIn(email: String, password: String, callback: IFirebaseAuth.FirebaseCallback) {
+    override fun attemptSignIn(email: String, password: String, callback: IFirebaseAuth.FirebaseUserCallback) {
         val auth = FirebaseAuth.getInstance()
         auth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener { authResult ->
@@ -22,17 +22,17 @@ class FirebaseAuthorization : IFirebaseAuth {
             }
     }
 
-    override fun attemptSignInWithGoogle(account: GoogleSignInAccount, callback: IFirebaseAuth.FirebaseCallback) {
+    override fun attemptSignInWithGoogle(account: GoogleSignInAccount, callback: IFirebaseAuth.FirebaseUserCallback) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         signInWithCredential(credential, callback)
     }
 
-    override fun attemptSignInWithFacebook(token: AccessToken, callback: IFirebaseAuth.FirebaseCallback) {
+    override fun attemptSignInWithFacebook(token: AccessToken, callback: IFirebaseAuth.FirebaseUserCallback) {
         val credential = FacebookAuthProvider.getCredential(token.token)
         signInWithCredential(credential, callback)
     }
 
-    private fun signInWithCredential(credential: AuthCredential, callback: IFirebaseAuth.FirebaseCallback) {
+    private fun signInWithCredential(credential: AuthCredential, callback: IFirebaseAuth.FirebaseUserCallback) {
         val auth = FirebaseAuth.getInstance()
         auth.signInWithCredential(credential)
             .addOnSuccessListener { authResult ->
@@ -47,7 +47,7 @@ class FirebaseAuthorization : IFirebaseAuth {
             }
     }
 
-    override fun createNewAccount(user: User, callback: IFirebaseAuth.FirebaseCallback) {
+    override fun createNewAccount(user: User, callback: IFirebaseAuth.FirebaseUserCallback) {
         val auth = FirebaseAuth.getInstance()
         auth.createUserWithEmailAndPassword(user.email, user.password)
             .addOnSuccessListener { authResult ->
@@ -69,7 +69,7 @@ class FirebaseAuthorization : IFirebaseAuth {
             }
     }
 
-    fun sendEmailVerification(user: FirebaseUser, callback: IFirebaseAuth.FirebaseCallback) {
+    fun sendEmailVerification(user: FirebaseUser, callback: IFirebaseAuth.FirebaseUserCallback) {
         user.sendEmailVerification().addOnCompleteListener { task ->
             if (task.isSuccessful)
                 callback.onSuccess(user)
@@ -87,8 +87,17 @@ class FirebaseAuthorization : IFirebaseAuth {
         val auth = FirebaseAuth.getInstance()
         auth.sendPasswordResetEmail(email)
             .addOnSuccessListener {
-                callback.onSuccess(auth.currentUser!!)
+                callback.onSuccess()
             }
             .addOnFailureListener { callback.onFailure("Не вдалося відправити лист. Перевірте правильність e-mail") }
+    }
+
+    override fun signOut(callback: IFirebaseAuth.FirebaseCallback) {
+        val auth = FirebaseAuth.getInstance()
+        if (auth.currentUser != null) {
+            FirebaseAuth.getInstance().signOut()
+            callback.onSuccess()
+        } else
+            callback.onFailure("Користувач не авторизований")
     }
 }

@@ -15,7 +15,7 @@ class ResetPasswordPresenter(private val view: IResetPasswordView) {
         if (isEmailValid(email)) {
             view.showProgress()
             model.sendPasswordReset(email, object: IFirebaseAuth.FirebaseCallback {
-                override fun onSuccess(user: FirebaseUser) {
+                override fun onSuccess() {
                     view.hideProgress()
                     view.showToast("Перевірте свій e-mail")
                     view.goToSignIn()

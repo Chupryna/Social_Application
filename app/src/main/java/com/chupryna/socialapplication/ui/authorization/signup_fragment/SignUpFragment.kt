@@ -75,4 +75,11 @@ class SignUpFragment : Fragment(), ISignUpView {
         (activity as AuthorizationActivity).presenter.onChangeFragment(SignInFragment())
     }
 
+    override fun showProgress() {
+        (activity as AuthorizationActivity).showProgress()
+    }
+
+    override fun hideProgress() {
+        (activity as AuthorizationActivity).hideProgress()
+    }
 }

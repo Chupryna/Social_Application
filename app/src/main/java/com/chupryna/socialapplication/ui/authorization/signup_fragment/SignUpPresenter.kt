@@ -23,17 +23,19 @@ class SignUpPresenter(private val view: ISignUpView) {
         }
 
         view.hideKeyboard()
+        view.showProgress()
         if (isDataValid(fullName, email, password,confirmPassword)) {
-            model.createNewAccount(User(fullName, email, password, null), object: IFirebaseAuth.FirebaseCallback {
+            model.createNewAccount(User(fullName, email, password, null), object: IFirebaseAuth.FirebaseUserCallback {
                 override fun onSuccess(user: FirebaseUser) {
+                    view.hideProgress()
                     onSignIn()
                 }
 
                 override fun onFailure(msg: String) {
+                    view.hideProgress()
                     view.showSignUpFailed(msg)
                     view.showEmailError(msg)
                 }
-
             })
         }
     }

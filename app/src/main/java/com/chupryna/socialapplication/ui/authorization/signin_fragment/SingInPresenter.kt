@@ -32,7 +32,7 @@ class SingInPresenter(private val view: ISignInView) {
         view.hideKeyboard()
         if (isDataValid(email, password)) {
             view.showProgress()
-            model.attemptSignIn(email, password, object : IFirebaseAuth.FirebaseCallback {
+            model.attemptSignIn(email, password, object : IFirebaseAuth.FirebaseUserCallback {
                 override fun onSuccess(user: FirebaseUser) {
                     view.hideProgress()
                     if (user.isEmailVerified)
@@ -54,7 +54,7 @@ class SingInPresenter(private val view: ISignInView) {
 
     fun firebaseSignInWithGoogle(account: GoogleSignInAccount) {
         view.showProgress()
-        model.attemptSignInWithGoogle(account, object: IFirebaseAuth.FirebaseCallback {
+        model.attemptSignInWithGoogle(account, object: IFirebaseAuth.FirebaseUserCallback {
             override fun onSuccess(user: FirebaseUser) {
                 view.startMainActivity(user)
                 view.hideProgress()
@@ -69,7 +69,7 @@ class SingInPresenter(private val view: ISignInView) {
 
     fun firebaseSignInWithFacebook(token: AccessToken) {
         view.showProgress()
-        model.attemptSignInWithFacebook(token, object: IFirebaseAuth.FirebaseCallback {
+        model.attemptSignInWithFacebook(token, object: IFirebaseAuth.FirebaseUserCallback {
             override fun onSuccess(user: FirebaseUser) {
                 view.startMainActivity(user)
                 view.hideProgress()
@@ -91,7 +91,7 @@ class SingInPresenter(private val view: ISignInView) {
     }
 
     fun sendEmailVerification(user: FirebaseUser) {
-        model.sendEmailVerification(user, object: IFirebaseAuth.FirebaseCallback {
+        model.sendEmailVerification(user, object: IFirebaseAuth.FirebaseUserCallback {
             override fun onSuccess(user: FirebaseUser) {
                 view.showAuthFailed("Лист відправлено. Перевірте свій e-mail")
             }

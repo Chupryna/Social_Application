@@ -7,21 +7,29 @@ import com.facebook.AccessToken
 
 interface IFirebaseAuth {
 
-    interface FirebaseCallback {
+    interface FirebaseUserCallback {
         fun onSuccess(user: FirebaseUser)
 
         fun onFailure(msg: String)
     }
 
-    fun attemptSignIn(email: String, password: String, callback: FirebaseCallback)
+    interface FirebaseCallback {
+        fun onSuccess()
 
-    fun attemptSignInWithGoogle(account: GoogleSignInAccount, callback: FirebaseCallback)
+        fun onFailure(msg: String)
+    }
 
-    fun attemptSignInWithFacebook(token: AccessToken, callback: FirebaseCallback)
+    fun attemptSignIn(email: String, password: String, callback: FirebaseUserCallback)
 
-    fun createNewAccount(user: User, callback: FirebaseCallback)
+    fun attemptSignInWithGoogle(account: GoogleSignInAccount, callback: FirebaseUserCallback)
+
+    fun attemptSignInWithFacebook(token: AccessToken, callback: FirebaseUserCallback)
+
+    fun createNewAccount(user: User, callback: FirebaseUserCallback)
+
+    fun sendPasswordReset(email: String, callback: FirebaseCallback)
 
     fun getCurrentUser(): FirebaseUser?
 
-    fun sendPasswordReset(email: String, callback: FirebaseCallback)
+    fun signOut(callback: FirebaseCallback)
 }

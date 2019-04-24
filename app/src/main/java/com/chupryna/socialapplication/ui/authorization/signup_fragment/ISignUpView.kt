@@ -21,4 +21,8 @@ interface ISignUpView {
     fun hideKeyboard()
 
     fun showSignIn()
+
+    fun showProgress()
+
+    fun hideProgress()
 }
