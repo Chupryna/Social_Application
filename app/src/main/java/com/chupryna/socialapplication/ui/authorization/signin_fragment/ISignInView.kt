@@ -29,5 +29,9 @@ interface ISignInView {
 
     fun showSignUp()
 
+    fun showResetPassword()
+
     fun showSnackBarSendEmail(msg: String, action: String, user: FirebaseUser)
+
+    fun startMainActivity(user: FirebaseUser)
 }

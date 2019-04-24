@@ -1,6 +1,7 @@
 package com.chupryna.socialapplication.data.firebase
 
 import com.chupryna.socialapplication.data.model.User
+import com.facebook.AccessToken
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.*
 
@@ -22,8 +23,17 @@ class FirebaseAuthorization : IFirebaseAuth {
     }
 
     override fun attemptSignInWithGoogle(account: GoogleSignInAccount, callback: IFirebaseAuth.FirebaseCallback) {
-        val auth = FirebaseAuth.getInstance()
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+        signInWithCredential(credential, callback)
+    }
+
+    override fun attemptSignInWithFacebook(token: AccessToken, callback: IFirebaseAuth.FirebaseCallback) {
+        val credential = FacebookAuthProvider.getCredential(token.token)
+        signInWithCredential(credential, callback)
+    }
+
+    private fun signInWithCredential(credential: AuthCredential, callback: IFirebaseAuth.FirebaseCallback) {
+        val auth = FirebaseAuth.getInstance()
         auth.signInWithCredential(credential)
             .addOnSuccessListener { authResult ->
                 callback.onSuccess(authResult.user)
@@ -66,5 +76,19 @@ class FirebaseAuthorization : IFirebaseAuth {
             else
                 callback.onFailure("Не вдалося відправити лист для підтвердження e-mail")
         }
+    }
+
+    override fun getCurrentUser(): FirebaseUser? {
+        val auth = FirebaseAuth.getInstance()
+        return auth.currentUser
+    }
+
+    override fun sendPasswordReset(email: String, callback: IFirebaseAuth.FirebaseCallback) {
+        val auth = FirebaseAuth.getInstance()
+        auth.sendPasswordResetEmail(email)
+            .addOnSuccessListener {
+                callback.onSuccess(auth.currentUser!!)
+            }
+            .addOnFailureListener { callback.onFailure("Не вдалося відправити лист. Перевірте правильність e-mail") }
     }
 }

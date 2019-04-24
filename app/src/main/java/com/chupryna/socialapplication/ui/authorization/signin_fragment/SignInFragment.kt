@@ -11,7 +11,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.chupryna.socialapplication.R
 import com.chupryna.socialapplication.ui.authorization.AuthorizationActivity
+import com.chupryna.socialapplication.ui.authorization.reset_password_fragment.ResetPasswordFragment
 import com.chupryna.socialapplication.ui.authorization.signup_fragment.SignUpFragment
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -26,6 +31,7 @@ class SignInFragment : Fragment(), ISignInView {
     }
 
     private val presenter by lazy { SingInPresenter(this) }
+    private lateinit var callbackManager: CallbackManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_signin, container, false)
@@ -44,6 +50,26 @@ class SignInFragment : Fragment(), ISignInView {
         signInBtn.setOnClickListener { presenter.onSignIn(emailEt.text.toString(), passwordEt.text.toString()) }
         goToSignUpTv.setOnClickListener { presenter.onSignUp() }
         signInWithGoogleBtn.setOnClickListener { onSignInWithGoogle()}
+        signInWithFacebookBtn.setOnClickListener { onSignInWithFacebook() }
+        resetPasswordTv.setOnClickListener { presenter.onResetPassword() }
+    }
+
+    private fun onSignInWithFacebook() {
+        callbackManager = CallbackManager.Factory.create()
+        signInWithFacebookBtn.setReadPermissions("email", "public_profile")
+        signInWithFacebookBtn.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+            override fun onSuccess(loginResult: LoginResult) {
+                presenter.firebaseSignInWithFacebook(loginResult.accessToken)
+            }
+
+            override fun onCancel() {
+                println("cancel")
+            }
+
+            override fun onError(error: FacebookException) {
+                error.printStackTrace()
+            }
+        })
     }
 
     private fun onSignInWithGoogle() {
@@ -58,6 +84,8 @@ class SignInFragment : Fragment(), ISignInView {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
@@ -121,10 +149,18 @@ class SignInFragment : Fragment(), ISignInView {
         (activity as AuthorizationActivity).replaceFragment(SignUpFragment())
     }
 
+    override fun showResetPassword() {
+        (activity as AuthorizationActivity).replaceFragment(ResetPasswordFragment())
+    }
+
     override fun showSnackBarSendEmail(msg: String, action: String, user: FirebaseUser) {
         Snackbar
             .make(this.view!!, msg, Snackbar.LENGTH_LONG)
             .setAction(action) { presenter.sendEmailVerification(user) }
             .show()
+    }
+
+    override fun startMainActivity(user: FirebaseUser) {
+        (activity as AuthorizationActivity).startMainActivity(user)
     }
 }

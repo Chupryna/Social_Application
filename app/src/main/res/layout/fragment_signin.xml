@@ -70,23 +70,24 @@
             android:textColor="@android:color/black"
             android:textSize="26sp" />
 
-        <ImageButton
+        <com.google.android.gms.common.SignInButton
             android:id="@+id/signInWithGoogleBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/sign_in_google" />
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"/>
 
-        <ImageButton
+        <com.facebook.login.widget.LoginButton
             android:id="@+id/signInWithFacebookBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/sign_in_facebook" />
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp" />
 
     </LinearLayout>
 
     <TextView
+        android:id="@+id/resetPasswordTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

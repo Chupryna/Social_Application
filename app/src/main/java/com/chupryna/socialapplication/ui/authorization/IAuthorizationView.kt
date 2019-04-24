@@ -2,6 +2,7 @@ package com.chupryna.socialapplication.ui.authorization
 
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseUser
 
 interface IAuthorizationView {
 
@@ -17,4 +18,5 @@ interface IAuthorizationView {
 
     fun showToast(msg: String)
 
+    fun startMainActivity(user: FirebaseUser)
 }

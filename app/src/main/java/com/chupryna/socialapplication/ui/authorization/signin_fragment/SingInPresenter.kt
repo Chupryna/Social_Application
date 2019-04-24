@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.util.Patterns
 import com.chupryna.socialapplication.data.firebase.FirebaseAuthorization
 import com.chupryna.socialapplication.data.firebase.IFirebaseAuth
+import com.facebook.AccessToken
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
 
@@ -35,7 +36,7 @@ class SingInPresenter(private val view: ISignInView) {
                 override fun onSuccess(user: FirebaseUser) {
                     view.hideProgress()
                     if (user.isEmailVerified)
-                        println()
+                        view.startMainActivity(user)
                     else {
                         view.showSnackBarSendEmail("Підтвердіть e-mail", "Відправити лист повторно", user)
                         view.showEmailError("Підтвердіть e-mail")
@@ -55,6 +56,22 @@ class SingInPresenter(private val view: ISignInView) {
         view.showProgress()
         model.attemptSignInWithGoogle(account, object: IFirebaseAuth.FirebaseCallback {
             override fun onSuccess(user: FirebaseUser) {
+                view.startMainActivity(user)
+                view.hideProgress()
+            }
+
+            override fun onFailure(msg: String) {
+                view.hideProgress()
+                view.showAuthFailed(msg)
+            }
+        })
+    }
+
+    fun firebaseSignInWithFacebook(token: AccessToken) {
+        view.showProgress()
+        model.attemptSignInWithFacebook(token, object: IFirebaseAuth.FirebaseCallback {
+            override fun onSuccess(user: FirebaseUser) {
+                view.startMainActivity(user)
                 view.hideProgress()
             }
 
@@ -67,6 +84,10 @@ class SingInPresenter(private val view: ISignInView) {
 
     fun onSignUp() {
         view.showSignUp()
+    }
+
+    fun onResetPassword() {
+        view.showResetPassword()
     }
 
     fun sendEmailVerification(user: FirebaseUser) {

@@ -1,6 +1,7 @@
 package com.chupryna.socialapplication.ui.authorization
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,7 +9,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.chupryna.socialapplication.R
-import kotlinx.android.synthetic.main.activity_main.*
+import com.chupryna.socialapplication.ui.main.MainActivity
+import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.activity_authorization.*
 
 class AuthorizationActivity : AppCompatActivity(), IAuthorizationView {
 
@@ -16,7 +19,7 @@ class AuthorizationActivity : AppCompatActivity(), IAuthorizationView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_authorization)
 
         presenter.onLoadActivity()
     }
@@ -51,5 +54,11 @@ class AuthorizationActivity : AppCompatActivity(), IAuthorizationView {
 
     override fun showToast(msg: String) {
        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+    }
+
+    override fun startMainActivity(user: FirebaseUser) {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("user", user)
+        startActivity(intent)
     }
 }
