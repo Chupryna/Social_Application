@@ -2,6 +2,7 @@ package com.chupryna.socialapplication.ui.main
 
 import com.chupryna.socialapplication.data.firebase.FirebaseAuthorization
 import com.chupryna.socialapplication.data.firebase.IFirebaseAuth
+import com.chupryna.socialapplication.ui.main.profile_fragment.ProfileFragment
 
 class MainPresenter(private val view: IMainView) {
 
@@ -17,5 +18,10 @@ class MainPresenter(private val view: IMainView) {
 
             }
         })
+    }
+
+    fun onLoadProfile() {
+        view.closeDrawer()
+        view.replaceFragment(ProfileFragment())
     }
 }

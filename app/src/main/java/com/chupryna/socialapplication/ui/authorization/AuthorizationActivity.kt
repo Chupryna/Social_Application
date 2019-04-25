@@ -24,7 +24,6 @@ class AuthorizationActivity : AppCompatActivity(), IAuthorizationView {
         presenter.onLoadActivity()
     }
 
-
     override fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
@@ -59,6 +58,7 @@ class AuthorizationActivity : AppCompatActivity(), IAuthorizationView {
     override fun startMainActivity(user: FirebaseUser) {
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("user", user)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
     }
 }

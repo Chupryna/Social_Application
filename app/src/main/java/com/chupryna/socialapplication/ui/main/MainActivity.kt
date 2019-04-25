@@ -9,10 +9,13 @@ import android.view.MenuItem
 import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
+import android.view.View
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.chupryna.socialapplication.R
 import com.chupryna.socialapplication.ui.authorization.AuthorizationActivity
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.activity_authorization.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -49,14 +52,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         navigationView.setNavigationItemSelectedListener(this)
+
+        val headerView = navigationView.getHeaderView(0)
+        headerView.setOnClickListener { presenter.onLoadProfile() }
     }
 
     override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+        closeDrawer()
+        super.onBackPressed()
+    }
+
+    override fun closeDrawer() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -95,6 +103,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_fragment_ontainer, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun addFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.main_fragment_ontainer, fragment)
+            .commit()
+    }
+
+    override fun showProgress() {
+        authContainerProgressBar.visibility = View.VISIBLE
+    }
+
+    override fun hideProgress() {
+        authContainerProgressBar.visibility = View.GONE
     }
 
     override fun loadAuthActivity() {
