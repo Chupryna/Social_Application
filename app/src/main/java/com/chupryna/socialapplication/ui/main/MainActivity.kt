@@ -15,9 +15,9 @@ import androidx.fragment.app.Fragment
 import com.chupryna.socialapplication.R
 import com.chupryna.socialapplication.ui.authorization.AuthorizationActivity
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_authorization.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, IMainView {
 
@@ -120,11 +120,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun showProgress() {
-        authContainerProgressBar.visibility = View.VISIBLE
+        mainContainerProgressBar.visibility = View.VISIBLE
     }
 
     override fun hideProgress() {
-        authContainerProgressBar.visibility = View.GONE
+        mainContainerProgressBar.visibility = View.GONE
     }
 
     override fun loadAuthActivity() {
