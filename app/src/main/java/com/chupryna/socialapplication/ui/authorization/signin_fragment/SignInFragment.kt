@@ -31,7 +31,7 @@ class SignInFragment : Fragment(), ISignInView {
     }
 
     private val presenter by lazy { SingInPresenter(this) }
-    private lateinit var callbackManager: CallbackManager
+    private val callbackManager by lazy { CallbackManager.Factory.create() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_signin, container, false)
@@ -55,7 +55,6 @@ class SignInFragment : Fragment(), ISignInView {
     }
 
     private fun onSignInWithFacebook() {
-        callbackManager = CallbackManager.Factory.create()
         signInWithFacebookBtn.setReadPermissions("email", "public_profile")
         signInWithFacebookBtn.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
