@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_album.*
 
 class AlbumFragment : Fragment(), IAlbumView {
 
-    private val presenter by lazy { AlbumPresenter(this) }
+    private val presenter by lazy { AlbumPresenter(this, this.context!!) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_album, container, false)

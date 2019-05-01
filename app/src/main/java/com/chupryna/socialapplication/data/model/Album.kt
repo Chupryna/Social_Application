@@ -1,10 +1,17 @@
 package com.chupryna.socialapplication.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-data class Album(@SerializedName("userId")
-                 val userId: Int = 0,
-                 @SerializedName("id")
-                 val id: Int = 0,
-                 @SerializedName("title")
-                 val title: String = "")
+@Entity
+data class Album(
+    @SerializedName("userId")
+    val userId: Int = 0,
+
+    @PrimaryKey
+    @SerializedName("id")
+    val id: Int = 0,
+
+    @SerializedName("title")
+    val title: String = "")
