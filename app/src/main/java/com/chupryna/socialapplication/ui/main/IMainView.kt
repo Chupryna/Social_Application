@@ -16,4 +16,5 @@ interface IMainView {
 
     fun closeDrawer()
 
+    fun setTitle(title: String)
 }

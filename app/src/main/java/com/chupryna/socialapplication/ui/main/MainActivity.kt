@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.chupryna.socialapplication.R
 import com.chupryna.socialapplication.ui.authorization.AuthorizationActivity
+import com.chupryna.socialapplication.ui.main.album_fragment.AlbumFragment
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.setNavigationItemSelectedListener(this)
 
         val headerView = navigationView.getHeaderView(0)
-        headerView.setOnClickListener { presenter.onLoadProfile() }
+        headerView.setOnClickListener { presenter.onProfile() }
     }
 
     override fun onBackPressed() {
@@ -85,8 +86,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_home -> {
 
             }
-            R.id.nav_gallery -> {
-
+            R.id.nav_albums -> {
+                presenter.onAlbums()
             }
             R.id.nav_slideshow -> {
 
@@ -130,5 +131,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun loadAuthActivity() {
         val intent = Intent(this, AuthorizationActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun setTitle(title: String) {
+        supportActionBar?.title = title
     }
 }
