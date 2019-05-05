@@ -40,8 +40,11 @@ class PhotoFragment(private val album: Album) : Fragment(), IPhotoView {
         (activity as MainActivity).hideProgress()
     }
 
-
     override fun setAdapter(list: List<Photo>) {
-        photoRv.adapter = RVAdapterPhotos(list)
+        photoRv.adapter = RVAdapterPhotos(list, this)
+    }
+
+    override fun replaceFragment(fragment: Fragment) {
+        (activity as MainActivity).replaceFragment(fragment)
     }
 }
