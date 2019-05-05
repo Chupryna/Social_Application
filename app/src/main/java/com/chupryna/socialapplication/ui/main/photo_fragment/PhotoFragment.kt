@@ -41,7 +41,7 @@ class PhotoFragment(private val album: Album) : Fragment(), IPhotoView {
     }
 
     override fun setAdapter(list: List<Photo>) {
-        photoRv.adapter = RVAdapterPhotos(list, this)
+        photoRv.adapter = RVAdapterPhotos(list)
     }
 
     override fun replaceFragment(fragment: Fragment) {
