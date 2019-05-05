@@ -17,8 +17,12 @@ class LocalAlbumDataSource(private val context: Context) : IAlbumDataSource {
             callback.onFailure()
     }
 
-    override fun getAlbumsByID(id: Int, callback: IAlbumDataSource.IAlbumCallback) {
-
+    override fun getAlbumsByUserID(id: Int, callback: IAlbumDataSource.IAlbumCallback) {
+        val cashedAlbums = db.albumDao().getAlbumByUserId(id)
+        if (cashedAlbums.isNotEmpty())
+            callback.onAlbumLoaded(cashedAlbums)
+        else
+            callback.onFailure()
     }
 
     fun saveToDB(list: List<Album>) {

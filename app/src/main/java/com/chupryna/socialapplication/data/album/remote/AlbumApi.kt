@@ -6,9 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface AlbumApi {
-    @GET("albums/1/photos")
+    @GET("users/1/albums")
     fun getAllAlbums():Call<List<Album>>
 
-    @GET("albums/1/photos")
-    fun getAlbumByAlbumId(@Query ("albumId") albumID: Int):Call<List<Album>>
+    @GET("users/1/albums")
+    fun getAlbumByUserId(@Query ("userId") userID: Int):Call<List<Album>>
 }

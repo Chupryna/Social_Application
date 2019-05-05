@@ -1,4 +1,4 @@
-package com.chupryna.socialapplication.ui.main.album_fragment
+package com.chupryna.socialapplication.ui.main.photo_fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,34 +8,28 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.chupryna.socialapplication.R
 import com.chupryna.socialapplication.data.model.Album
+import com.chupryna.socialapplication.data.model.Photo
 import com.chupryna.socialapplication.ui.main.MainActivity
-import com.chupryna.socialapplication.ui.main.adapter.RVAdapterAlbums
-import kotlinx.android.synthetic.main.fragment_album.*
+import com.chupryna.socialapplication.ui.main.adapter.RVAdapterPhotos
+import kotlinx.android.synthetic.main.fragment_photo.*
 
-class AlbumFragment : Fragment(), IAlbumView {
+class PhotoFragment(private val album: Album) : Fragment(), IPhotoView {
 
-    private val presenter by lazy { AlbumPresenter(this, this.context!!) }
+    private val presenter by lazy { PhotoPresenter(this) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_album, container, false)
+        return inflater.inflate(R.layout.fragment_photo, container, false)
     }
 
     override fun onStart() {
         super.onStart()
         initView()
-        presenter.onLoadAlbums()
+        presenter.onLoadPhoto(album.userId)
     }
 
     private fun initView() {
-        albumsRv.layoutManager = GridLayoutManager(this.context, 2)
-    }
-
-    override fun setAdapter(list: List<Album>) {
-        albumsRv.adapter = RVAdapterAlbums(list, this)
-    }
-
-    override fun replaceFragment(fragment: Fragment) {
-        (activity as MainActivity).replaceFragment(fragment)
+        albumNameTv.text = album.title
+        photoRv.layoutManager = GridLayoutManager(context, 4)
     }
 
     override fun showProgress() {
@@ -44,5 +38,10 @@ class AlbumFragment : Fragment(), IAlbumView {
 
     override fun hideProgress() {
         (activity as MainActivity).hideProgress()
+    }
+
+
+    override fun setAdapter(list: List<Photo>) {
+        photoRv.adapter = RVAdapterPhotos(list)
     }
 }

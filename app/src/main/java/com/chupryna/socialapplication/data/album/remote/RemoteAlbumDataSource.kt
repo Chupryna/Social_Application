@@ -39,8 +39,8 @@ class RemoteAlbumDataSource : IAlbumDataSource {
         executeCall(call, callback)
     }
 
-    override fun getAlbumsByID(id: Int, callback: IAlbumDataSource.IAlbumCallback) {
-        val call: Call<List<Album>> = albumApi.getAlbumByAlbumId(id)
+    override fun getAlbumsByUserID(id: Int, callback: IAlbumDataSource.IAlbumCallback) {
+        val call: Call<List<Album>> = albumApi.getAlbumByUserId(id)
         executeCall(call, callback)
     }
 

@@ -12,8 +12,8 @@ abstract class AlbumDao {
     @Query("SELECT * FROM Album")
     abstract fun getAlbums(): List<Album>
 
-    @Query("SELECT * FROM Album WHERE id = :id")
-    abstract fun getAlbumById(id: Int): Album
+    @Query("SELECT * FROM Album WHERE userId = :id")
+    abstract fun getAlbumByUserId(id: Int): List<Album>
 
     @Insert
     abstract fun insert(albums: List<Album>): List<Long>

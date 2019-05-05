@@ -11,5 +11,5 @@ interface IAlbumDataSource {
 
     fun getAlbums(callback: IAlbumCallback)
 
-    fun getAlbumsByID(id: Int, callback: IAlbumCallback)
+    fun getAlbumsByUserID(id: Int, callback: IAlbumCallback)
 }

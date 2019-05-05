@@ -45,7 +45,7 @@ class AlbumRepository(private val context: Context) : IAlbumDataSource {
         })
     }
 
-    override fun getAlbumsByID(id: Int, callback: IAlbumDataSource.IAlbumCallback) {
+    override fun getAlbumsByUserID(id: Int, callback: IAlbumDataSource.IAlbumCallback) {
 
     }
 }
