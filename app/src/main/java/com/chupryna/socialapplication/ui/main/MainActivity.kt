@@ -14,7 +14,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.chupryna.socialapplication.R
 import com.chupryna.socialapplication.ui.authorization.AuthorizationActivity
-import com.chupryna.socialapplication.ui.main.album_fragment.AlbumFragment
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
