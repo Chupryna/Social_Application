@@ -13,7 +13,7 @@ class AlbumRepository(private val context: Context) : IAlbumDataSource {
     private val remoteAlbumDS = RemoteAlbumDataSource()
 
     override fun getAlbums(callback: IAlbumDataSource.IAlbumCallback) {
-        if (context.isNetworkAvailable(context)) {
+        if (context.isNetworkAvailable()) {
             loadAlbumsFromRemote(callback)
         } else {
             loadAlbumsFromLocal(callback)
