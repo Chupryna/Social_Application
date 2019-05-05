@@ -3,7 +3,6 @@ package com.chupryna.socialapplication
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
-import android.net.Uri
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -28,14 +27,15 @@ fun ImageView.loadPhoto(path: String?) {
 }
 
 fun Context.shareImage(url: String) {
-    //val path = Glide.getPhotoCacheDir(applicationContext, "").toString()
-
+  //  val file: File = Glide.with(this).asFile().load(url).submit().get()
     val intent = Intent().apply {
         action = Intent.ACTION_SEND
         putExtra(Intent.EXTRA_TEXT, url)
         type = "text/plain"
         //putExtra(Intent.EXTRA_STREAM, Uri.parse(path))
-        //type = "image/*"
+       // type = "image/*"
     }
     startActivity(Intent.createChooser(intent, "Надіслати через"))
 }
+
+

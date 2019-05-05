@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_photo.*
 
 class PhotoFragment(private val album: Album) : Fragment(), IPhotoView {
 
-    private val presenter by lazy { PhotoPresenter(this) }
+    private val presenter by lazy { PhotoPresenter(this, context!!) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_photo, container, false)
