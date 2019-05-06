@@ -1,5 +1,27 @@
 package com.chupryna.socialapplication.ui.main.post_fragment
 
-class PostPresenter(private val view: IPostView) {
+import android.content.Context
+import com.chupryna.socialapplication.data.model.Post
+import com.chupryna.socialapplication.data.post.IPostDataSource
+import com.chupryna.socialapplication.data.post.PostRepository
 
+class PostPresenter(
+    private val view: IPostView,
+    private val context: Context) {
+
+    private val model by lazy { PostRepository(context) }
+
+    fun onPostLoad() {
+        view.showProgress()
+        model.getPosts(object: IPostDataSource.IPostCallback {
+            override fun onPostLoaded(list: List<Post>) {
+                view.setAdapter(list)
+                view.hideProgress()
+            }
+
+            override fun onFailure() {
+                view.hideProgress()
+            }
+        })
+    }
 }

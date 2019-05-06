@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.fragment_post.*
 
 class PostFragment : Fragment(), IPostView {
 
-    private val presenter by lazy { PostPresenter(this) }
+    private val presenter by lazy { PostPresenter(this, context!!) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_post, container, false)
@@ -23,7 +23,7 @@ class PostFragment : Fragment(), IPostView {
     override fun onStart() {
         super.onStart()
         initView()
-        setAdapter(listOf(Post(), Post(), Post()))
+        presenter.onPostLoad()
     }
 
     private fun initView() {

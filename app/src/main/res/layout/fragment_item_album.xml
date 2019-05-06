@@ -22,17 +22,17 @@
 
     <TextView
         android:id="@+id/albumTitleTv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/albumItemImageView"
         app:layout_constraintEnd_toEndOf="@id/albumItemImageView"
         app:layout_constraintStart_toStartOf="@id/albumItemImageView"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
         tools:text="Заголовок" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

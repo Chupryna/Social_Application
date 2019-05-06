@@ -30,8 +30,11 @@ class RVAdapterPhotos(private val photosList: List<Photo>) : RecyclerView.Adapte
             val builder = StfalconImageViewer.Builder<Photo>(holder.itemView.context, photosList) { imageView, photo ->
                 imageView.loadPhoto(photo.url)
             }
+
+            val photoOverlayView = PhotoOverlayView(holder.itemView.context).apply { update(photosList[position] )}
             builder.withStartPosition(position)
-            builder.withOverlayView(PhotoOverlayView(holder.itemView.context).apply { update(photosList[position] )})
+            builder.withOverlayView(photoOverlayView)
+            builder.withImageChangeListener { position ->  photoOverlayView.update(photosList[position]) }
             builder.show()
         }
     }

@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val headerView = navigationView.getHeaderView(0)
         headerView.findViewById<TextView>(R.id.fullName_user_tv).text = user.displayName
         headerView.findViewById<TextView>(R.id.email_use_tv).text = user.email
+
+        presenter.onPosts()
     }
 
     private fun initListeners() {
