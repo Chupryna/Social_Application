@@ -27,15 +27,21 @@ fun ImageView.loadPhoto(path: String?) {
 }
 
 fun Context.shareImage(url: String) {
-  //  val file: File = Glide.with(this).asFile().load(url).submit().get()
     val intent = Intent().apply {
         action = Intent.ACTION_SEND
         putExtra(Intent.EXTRA_TEXT, url)
         type = "text/plain"
-        //putExtra(Intent.EXTRA_STREAM, Uri.parse(path))
-       // type = "image/*"
     }
     startActivity(Intent.createChooser(intent, "Надіслати через"))
 }
-
-
+    /*val task = Runnable {
+        val file: Bitmap = Glide.with(this).asBitmap().load(url).submit().get()
+        val intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_STREAM, file.compress(Bitmap.CompressFormat.JPEG, ))
+            type = "image/*"
+        }
+        startActivity(Intent.createChooser(intent, "Надіслати через"))
+    }
+    val t = Thread(task)
+    t.start()*/

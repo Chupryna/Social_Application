@@ -3,6 +3,7 @@ package com.chupryna.socialapplication.ui.main
 import com.chupryna.socialapplication.data.firebase.FirebaseAuthorization
 import com.chupryna.socialapplication.data.firebase.IFirebaseAuth
 import com.chupryna.socialapplication.ui.main.album_fragment.AlbumFragment
+import com.chupryna.socialapplication.ui.main.post_fragment.PostFragment
 import com.chupryna.socialapplication.ui.main.profile_fragment.ProfileFragment
 
 class MainPresenter(private val view: IMainView) {
@@ -31,5 +32,11 @@ class MainPresenter(private val view: IMainView) {
         view.closeDrawer()
         view.replaceFragment(AlbumFragment())
         view.setTitle("Альбоми")
+    }
+
+    fun onPosts() {
+        view.closeDrawer()
+        view.replaceFragment(PostFragment())
+        view.setTitle("Новини")
     }
 }

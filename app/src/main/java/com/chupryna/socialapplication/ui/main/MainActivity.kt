@@ -82,8 +82,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_home -> {
-
+            R.id.nav_posts -> {
+                presenter.onPosts()
             }
             R.id.nav_albums -> {
                 presenter.onAlbums()
