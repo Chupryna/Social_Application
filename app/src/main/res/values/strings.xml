@@ -24,7 +24,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
+    <string name="share">Поділитися</string>
     <string name="menu_send">Send</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -32,5 +32,7 @@
     <string name="send">Відправити</string>
     <string name="quit">Вийти</string>
     <string name="menu_albums">Альбоми</string>
+    <string name="like">Подобається</string>
+    <string name="comments">Коментарі</string>
 
 </resources>

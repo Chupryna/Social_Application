@@ -76,16 +76,17 @@
                 android:id="@+id/postLikeContainer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="4dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:clickable="true"
                 android:focusable="true"
-                android:orientation="horizontal">
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:padding="4dp">
 
                 <CheckBox
                     android:id="@+id/likeCb"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:button="@drawable/checkbox_like"
                     android:text="@string/like"
@@ -96,12 +97,13 @@
                 android:id="@+id/postCommentContainer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="4dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:clickable="true"
                 android:focusable="true"
-                android:orientation="horizontal">
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:padding="4dp">
 
                 <ImageButton
                     android:layout_width="24dp"
@@ -110,9 +112,10 @@
                     tools:ignore="contentDescription" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:layout_marginStart="4dp"
+                    android:gravity="center_vertical"
                     android:text="@string/comments"
                     android:textColor="@android:color/black" />
             </LinearLayout>
@@ -121,12 +124,13 @@
                 android:id="@+id/postShareContainer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="4dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:clickable="true"
                 android:focusable="true"
-                android:orientation="horizontal">
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:padding="4dp">
 
                 <ImageButton
                     android:layout_width="24dp"
@@ -135,9 +139,10 @@
                     tools:ignore="contentDescription" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="center"
+                    android:layout_marginStart="4dp"
+                    android:gravity="center_vertical"
                     android:text="@string/share"
                     android:textColor="@android:color/black" />
             </LinearLayout>

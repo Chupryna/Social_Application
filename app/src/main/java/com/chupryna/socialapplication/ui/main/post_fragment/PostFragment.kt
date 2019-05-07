@@ -39,7 +39,7 @@ class PostFragment : Fragment(), IPostView {
     }
 
     override fun setAdapter(list: List<Post>) {
-        postsRV.adapter = RVAdapterPosts(list)
+        postsRV.adapter = RVAdapterPosts(list, context!!)
     }
 
     override fun replaceFragment(fragment: Fragment) {
