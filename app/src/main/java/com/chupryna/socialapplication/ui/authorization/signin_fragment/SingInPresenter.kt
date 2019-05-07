@@ -6,9 +6,15 @@ import android.text.TextUtils
 import android.util.Patterns
 import com.chupryna.socialapplication.data.firebase.FirebaseAuthorization
 import com.chupryna.socialapplication.data.firebase.IFirebaseAuth
+import com.chupryna.socialapplication.data.firebase.MethodAuthorization
 import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookException
+import com.facebook.login.LoginResult
+import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.fragment_signin.*
 
 
 class SingInPresenter(private val view: ISignInView) {
@@ -50,6 +56,23 @@ class SingInPresenter(private val view: ISignInView) {
 
             })
         }
+    }
+
+    fun onSignInWithFacebook(loginButton: LoginButton, callbackManager: CallbackManager) {
+        val methodAuthorization = MethodAuthorization()
+        methodAuthorization.signInWithFacebook(loginButton, callbackManager, object: IFirebaseAuth.FirebaseFacebookCallback {
+            override fun onSuccess(loginResult: LoginResult) {
+                firebaseSignInWithFacebook(loginResult.accessToken)
+            }
+
+            override fun onCancel() {
+                view.showAuthFailed("Скасування операції")
+            }
+
+            override fun onError(error: FacebookException) {
+                view.showAuthFailed(error.localizedMessage)
+            }
+        })
     }
 
     fun firebaseSignInWithGoogle(account: GoogleSignInAccount) {

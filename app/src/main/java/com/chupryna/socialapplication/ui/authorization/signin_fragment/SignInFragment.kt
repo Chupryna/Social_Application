@@ -10,15 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.chupryna.socialapplication.R
+import com.chupryna.socialapplication.data.firebase.MethodAuthorization
 import com.chupryna.socialapplication.ui.authorization.AuthorizationActivity
 import com.chupryna.socialapplication.ui.authorization.reset_password_fragment.ResetPasswordFragment
 import com.chupryna.socialapplication.ui.authorization.signup_fragment.SignUpFragment
 import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseUser
@@ -50,11 +47,11 @@ class SignInFragment : Fragment(), ISignInView {
         signInBtn.setOnClickListener { presenter.onSignIn(emailEt.text.toString(), passwordEt.text.toString()) }
         goToSignUpTv.setOnClickListener { presenter.onSignUp() }
         signInWithGoogleBtn.setOnClickListener { onSignInWithGoogle()}
-        signInWithFacebookBtn.setOnClickListener { onSignInWithFacebook() }
+        signInWithFacebookBtn.setOnClickListener { presenter.onSignInWithFacebook(signInWithFacebookBtn, callbackManager) }
         resetPasswordTv.setOnClickListener { presenter.onResetPassword() }
     }
 
-    private fun onSignInWithFacebook() {
+   /* private fun onSignInWithFacebook() {
         signInWithFacebookBtn.setReadPermissions("email", "public_profile")
         signInWithFacebookBtn.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
@@ -69,16 +66,17 @@ class SignInFragment : Fragment(), ISignInView {
                 error.printStackTrace()
             }
         })
-    }
+    }*/
 
     private fun onSignInWithGoogle() {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        /*val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
 
         val googleSignInClient = GoogleSignIn.getClient(this.getFragmentContext(), gso)
-        val signInIntent = googleSignInClient.signInIntent
+        val signInIntent = googleSignInClient.signInIntent*/
+        val signInIntent = MethodAuthorization().signInWithGoogle(getFragmentContext())
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
 
