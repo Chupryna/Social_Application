@@ -24,4 +24,18 @@ class PostPresenter(
             }
         })
     }
+
+    fun onPostUpdate() {
+        view.showRefreshing()
+        model.getPosts(object: IPostDataSource.IPostCallback {
+            override fun onPostLoaded(list: List<Post>) {
+                view.updateAdapter(list)
+                view.hideRefreshing()
+            }
+
+            override fun onFailure() {
+                view.hideRefreshing()
+            }
+        })
+    }
 }

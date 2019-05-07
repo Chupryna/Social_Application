@@ -23,7 +23,12 @@ class PostFragment : Fragment(), IPostView {
     override fun onStart() {
         super.onStart()
         initView()
+        initListeners()
         presenter.onPostLoad()
+    }
+
+    private fun initListeners() {
+        postSwipeRefreshLayout.setOnRefreshListener { presenter.onPostUpdate() }
     }
 
     private fun initView() {
@@ -38,8 +43,20 @@ class PostFragment : Fragment(), IPostView {
         (activity as MainActivity).hideProgress()
     }
 
+    override fun showRefreshing() {
+        postSwipeRefreshLayout.isRefreshing = true
+    }
+
+    override fun hideRefreshing() {
+        postSwipeRefreshLayout.isRefreshing = false
+    }
+
     override fun setAdapter(list: List<Post>) {
-        postsRV.adapter = RVAdapterPosts(list, context!!)
+        postsRV.adapter = RVAdapterPosts(list, this, context!!)
+    }
+
+    override fun updateAdapter(list: List<Post>) {
+        (postsRV.adapter as RVAdapterPosts).updateList(list)
     }
 
     override fun replaceFragment(fragment: Fragment) {

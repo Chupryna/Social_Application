@@ -9,7 +9,13 @@ interface IPostView {
 
     fun hideProgress()
 
+    fun showRefreshing()
+
+    fun hideRefreshing()
+
     fun setAdapter(list: List<Post>)
+
+    fun updateAdapter(list: List<Post>)
 
     fun replaceFragment(fragment: Fragment)
 }

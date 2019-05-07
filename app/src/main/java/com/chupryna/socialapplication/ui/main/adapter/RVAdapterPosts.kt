@@ -11,10 +11,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.chupryna.socialapplication.R
 import com.chupryna.socialapplication.data.model.Post
+import com.chupryna.socialapplication.ui.main.comment_fragment.CommentFragment
+import com.chupryna.socialapplication.ui.main.post_fragment.IPostView
 import kotlinx.android.synthetic.main.fragment_item_post.view.*
 
 class RVAdapterPosts(
-    private val postsList: List<Post>,
+    private var postsList: List<Post>,
+    private val view: IPostView,
     private val context: Context
 ) : RecyclerView.Adapter<RVAdapterPosts.PostViewHolder>() {
 
@@ -47,7 +50,7 @@ class RVAdapterPosts(
     }
 
     private fun onCommentClick(position: Int) {
-
+        view.replaceFragment(CommentFragment(postsList[position]))
     }
 
     private fun onShareClick(position: Int) {
@@ -58,6 +61,11 @@ class RVAdapterPosts(
             type = "text/plane"
         }
         context.startActivity(Intent.createChooser(intent, "Надіслати до"))
+    }
+
+    fun updateList(list: List<Post>) {
+        postsList = list
+        notifyDataSetChanged()
     }
 
     class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
