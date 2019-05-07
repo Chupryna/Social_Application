@@ -52,6 +52,6 @@ class ResetPasswordFragment : Fragment(), IResetPasswordView {
     }
 
     override fun goToSignIn() {
-        (activity as AuthorizationActivity).presenter.onChangeFragment(SignInFragment())
+        (activity as AuthorizationActivity).replaceFragment(SignInFragment())
     }
 }

@@ -1,14 +1,18 @@
 package com.chupryna.socialapplication.ui.authorization.signup_fragment
 
+import android.content.Context
 import android.text.TextUtils
 import android.util.Patterns
 import com.chupryna.socialapplication.data.firebase.FirebaseAuthorization
 import com.chupryna.socialapplication.data.firebase.IFirebaseAuth
 import com.chupryna.socialapplication.data.model.User
+import com.chupryna.socialapplication.isNetworkAvailable
 import com.google.firebase.auth.FirebaseUser
 import java.util.regex.Pattern
 
-class SignUpPresenter(private val view: ISignUpView) {
+class SignUpPresenter(
+    private val view: ISignUpView,
+    private val context: Context) {
 
     companion object {
         private const val PASSWORD_PATTERN = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}"
@@ -17,7 +21,7 @@ class SignUpPresenter(private val view: ISignUpView) {
     private val model by lazy { FirebaseAuthorization() }
 
     fun onSignUp(fullName: String, email: String, password: String, confirmPassword: String) {
-        if (!view.checkNetwork()) {
+        if (!context.isNetworkAvailable()) {
             view.showSignUpFailed("Відсутнє з'єднання з мережею")
             return
         }

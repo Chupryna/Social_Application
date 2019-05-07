@@ -18,10 +18,6 @@ class AuthorizationPresenter(private val view: IAuthorizationView) {
             view.startMainActivity(user)
     }
 
-    fun onChangeFragment(fragment: Fragment) {
-        view.replaceFragment(fragment)
-    }
-
     fun isNetworkAvailable(context: Context): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networks = connectivityManager.allNetworks
@@ -30,5 +26,4 @@ class AuthorizationPresenter(private val view: IAuthorizationView) {
 
         return false
     }
-
 }

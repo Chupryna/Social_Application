@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_signup.*
 
 class SignUpFragment : Fragment(), ISignUpView {
 
-    private val presenter by lazy { SignUpPresenter(this) }
+    private val presenter by lazy { SignUpPresenter(this, context!!) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_signup, container, false)
@@ -59,10 +59,6 @@ class SignUpFragment : Fragment(), ISignUpView {
         passwordSignUpEt.error = null
     }
 
-    override fun checkNetwork(): Boolean {
-        return (activity as AuthorizationActivity).presenter.isNetworkAvailable(context!!)
-    }
-
     override fun showSignUpFailed(msg: String) {
         (activity as AuthorizationActivity).showToast(msg)
     }
@@ -72,7 +68,7 @@ class SignUpFragment : Fragment(), ISignUpView {
     }
 
     override fun showSignIn() {
-        (activity as AuthorizationActivity).presenter.onChangeFragment(SignInFragment())
+        (activity as AuthorizationActivity).replaceFragment(SignInFragment())
     }
 
     override fun showProgress() {
