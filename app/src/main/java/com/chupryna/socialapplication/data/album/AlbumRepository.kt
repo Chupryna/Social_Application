@@ -4,7 +4,7 @@ import android.content.Context
 import com.chupryna.socialapplication.data.album.local.LocalAlbumDataSource
 import com.chupryna.socialapplication.data.album.remote.RemoteAlbumDataSource
 import com.chupryna.socialapplication.data.model.Album
-import com.chupryna.socialapplication.isNetworkAvailable
+import com.chupryna.socialapplication.utils.isNetworkAvailable
 
 
 class AlbumRepository(private val context: Context) : IAlbumDataSource {

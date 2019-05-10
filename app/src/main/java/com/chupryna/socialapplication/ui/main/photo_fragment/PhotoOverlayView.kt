@@ -6,7 +6,7 @@ import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.chupryna.socialapplication.R
 import com.chupryna.socialapplication.data.model.Photo
-import com.chupryna.socialapplication.shareImage
+import com.chupryna.socialapplication.utils.shareImage
 import kotlinx.android.synthetic.main.overlay_photo.view.*
 
 class PhotoOverlayView @JvmOverloads constructor(

@@ -23,4 +23,6 @@ interface ISignUpView {
     fun showProgress()
 
     fun hideProgress()
+
+    fun checkPermission()
 }

@@ -14,8 +14,6 @@ import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.fragment_signin.*
-
 
 class SingInPresenter(private val view: ISignInView) {
 
@@ -53,7 +51,6 @@ class SingInPresenter(private val view: ISignInView) {
                     view.hideProgress()
                     view.showAuthFailed(msg)
                 }
-
             })
         }
     }
@@ -122,7 +119,6 @@ class SingInPresenter(private val view: ISignInView) {
             override fun onFailure(msg: String) {
                 view.showAuthFailed(msg)
             }
-
         })
     }
 

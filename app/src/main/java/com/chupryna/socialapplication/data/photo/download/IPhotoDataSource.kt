@@ -1,4 +1,4 @@
-package com.chupryna.socialapplication.data.photo
+package com.chupryna.socialapplication.data.photo.download
 
 import com.chupryna.socialapplication.data.model.Photo
 

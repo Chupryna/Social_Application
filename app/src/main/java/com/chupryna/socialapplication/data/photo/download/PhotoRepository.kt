@@ -1,12 +1,13 @@
-package com.chupryna.socialapplication.data.photo
+package com.chupryna.socialapplication.data.photo.download
 
 import android.content.Context
 import com.chupryna.socialapplication.data.model.Photo
-import com.chupryna.socialapplication.data.photo.local.LocalPhotoDataSource
-import com.chupryna.socialapplication.data.photo.remote.RemotePhotoDataSource
-import com.chupryna.socialapplication.isNetworkAvailable
+import com.chupryna.socialapplication.data.photo.download.local.LocalPhotoDataSource
+import com.chupryna.socialapplication.data.photo.download.remote.RemotePhotoDataSource
+import com.chupryna.socialapplication.utils.isNetworkAvailable
 
-class PhotoRepository(private val context: Context) : IPhotoDataSource {
+class PhotoRepository(private val context: Context) :
+    IPhotoDataSource {
 
     private val remotePhotoDS = RemotePhotoDataSource()
     private val localPhotoDS = LocalPhotoDataSource(context)
@@ -16,7 +17,8 @@ class PhotoRepository(private val context: Context) : IPhotoDataSource {
     }
 
     private fun loadFromRemote(id: Int, callback: IPhotoDataSource.IPhotoCallback) {
-        remotePhotoDS.getPhotosByAlbumID(id, object: IPhotoDataSource.IPhotoCallback {
+        remotePhotoDS.getPhotosByAlbumID(id, object:
+            IPhotoDataSource.IPhotoCallback {
             override fun onPhotosLoaded(list: List<Photo>) {
                 callback.onPhotosLoaded(list)
                 localPhotoDS.saveToDB(list)
@@ -29,7 +31,8 @@ class PhotoRepository(private val context: Context) : IPhotoDataSource {
     }
 
     private fun loadFromLocal(id: Int, callback: IPhotoDataSource.IPhotoCallback) {
-        localPhotoDS.getPhotosByAlbumID(id, object: IPhotoDataSource.IPhotoCallback {
+        localPhotoDS.getPhotosByAlbumID(id, object:
+            IPhotoDataSource.IPhotoCallback {
             override fun onPhotosLoaded(list: List<Photo>) {
                 callback.onPhotosLoaded(list)
             }

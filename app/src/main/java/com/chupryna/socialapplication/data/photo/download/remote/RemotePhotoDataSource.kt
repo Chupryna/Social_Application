@@ -1,8 +1,8 @@
-package com.chupryna.socialapplication.data.photo.remote
+package com.chupryna.socialapplication.data.photo.download.remote
 
 import com.chupryna.socialapplication.BuildConfig
 import com.chupryna.socialapplication.data.model.Photo
-import com.chupryna.socialapplication.data.photo.IPhotoDataSource
+import com.chupryna.socialapplication.data.photo.download.IPhotoDataSource
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -12,7 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class RemotePhotoDataSource : IPhotoDataSource{
+class RemotePhotoDataSource : IPhotoDataSource {
 
     private val photoApi: PhotoApi
 

@@ -4,7 +4,7 @@ import android.content.Context
 import com.chupryna.socialapplication.data.model.Post
 import com.chupryna.socialapplication.data.post.local.LocalPostDataSource
 import com.chupryna.socialapplication.data.post.remote.RemotePostDataSource
-import com.chupryna.socialapplication.isNetworkAvailable
+import com.chupryna.socialapplication.utils.isNetworkAvailable
 
 class PostRepository(private val context: Context) : IPostDataSource {
 

@@ -8,7 +8,7 @@ import com.chupryna.socialapplication.data.album.local.AlbumDao
 import com.chupryna.socialapplication.data.model.Album
 import com.chupryna.socialapplication.data.model.Photo
 import com.chupryna.socialapplication.data.model.Post
-import com.chupryna.socialapplication.data.photo.local.PhotoDao
+import com.chupryna.socialapplication.data.photo.download.local.PhotoDao
 import com.chupryna.socialapplication.data.post.local.PostDao
 
 @Database(entities = [Album::class, Photo::class, Post::class], version = 3)

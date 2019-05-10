@@ -7,7 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.chupryna.socialapplication.R
 import com.chupryna.socialapplication.data.model.Photo
-import com.chupryna.socialapplication.loadPhoto
+import com.chupryna.socialapplication.utils.loadPhoto
 import com.chupryna.socialapplication.ui.main.photo_fragment.PhotoOverlayView
 import com.stfalcon.imageviewer.StfalconImageViewer
 import kotlinx.android.synthetic.main.fragment_item_photo.view.*

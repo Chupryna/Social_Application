@@ -1,4 +1,4 @@
-package com.chupryna.socialapplication.data.photo.local
+package com.chupryna.socialapplication.data.photo.download.local
 
 import androidx.room.*
 import com.chupryna.socialapplication.data.model.Photo

@@ -1,12 +1,13 @@
 package com.chupryna.socialapplication.ui.authorization.signup_fragment
 
 import android.content.Context
+import android.net.Uri
 import android.text.TextUtils
 import android.util.Patterns
 import com.chupryna.socialapplication.data.firebase.FirebaseAuthorization
 import com.chupryna.socialapplication.data.firebase.IFirebaseAuth
 import com.chupryna.socialapplication.data.model.User
-import com.chupryna.socialapplication.isNetworkAvailable
+import com.chupryna.socialapplication.utils.isNetworkAvailable
 import com.google.firebase.auth.FirebaseUser
 import java.util.regex.Pattern
 
@@ -20,7 +21,13 @@ class SignUpPresenter(
 
     private val model by lazy { FirebaseAuthorization() }
 
-    fun onSignUp(fullName: String, email: String, password: String, confirmPassword: String) {
+    fun onSignUp(
+        fullName: String,
+        email: String,
+        password: String,
+        confirmPassword: String,
+        photo: Uri?
+    ) {
         if (!context.isNetworkAvailable()) {
             view.showSignUpFailed("Відсутнє з'єднання з мережею")
             return
@@ -29,7 +36,7 @@ class SignUpPresenter(
         view.hideKeyboard()
         view.showProgress()
         if (isDataValid(fullName, email, password,confirmPassword)) {
-            model.createNewAccount(User(fullName, email, password, null), object: IFirebaseAuth.FirebaseUserCallback {
+            model.createNewAccount(User(fullName, email, password, photo), object: IFirebaseAuth.FirebaseUserCallback {
                 override fun onSuccess(user: FirebaseUser) {
                     view.hideProgress()
                     onSignIn()
@@ -46,6 +53,10 @@ class SignUpPresenter(
 
     fun onSignIn() {
         view.showSignIn()
+    }
+
+    fun onPhotoChange() {
+        view.checkPermission()
     }
 
     private fun isDataValid(fullName: String, email: String, password: String, confirmPassword: String): Boolean {

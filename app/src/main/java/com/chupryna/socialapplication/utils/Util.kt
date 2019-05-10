@@ -1,4 +1,4 @@
-package com.chupryna.socialapplication
+package com.chupryna.socialapplication.utils
 
 import android.content.Context
 import android.content.Intent
@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.chupryna.socialapplication.R
 
 fun Context.isNetworkAvailable(): Boolean {
     val connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

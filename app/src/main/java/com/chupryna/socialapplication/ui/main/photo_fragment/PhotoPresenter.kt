@@ -2,8 +2,8 @@ package com.chupryna.socialapplication.ui.main.photo_fragment
 
 import android.content.Context
 import com.chupryna.socialapplication.data.model.Photo
-import com.chupryna.socialapplication.data.photo.IPhotoDataSource
-import com.chupryna.socialapplication.data.photo.PhotoRepository
+import com.chupryna.socialapplication.data.photo.download.IPhotoDataSource
+import com.chupryna.socialapplication.data.photo.download.PhotoRepository
 
 class PhotoPresenter(
     private val view: IPhotoView,

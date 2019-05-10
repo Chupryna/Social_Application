@@ -1,4 +1,4 @@
-package com.chupryna.socialapplication.data.photo.remote
+package com.chupryna.socialapplication.data.photo.download.remote
 
 import com.chupryna.socialapplication.data.model.Photo
 import retrofit2.Call
