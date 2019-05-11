@@ -14,7 +14,7 @@ interface ISignUpView {
 
     fun hidePasswordError()
 
-    fun showSignUpFailed(msg: String)
+    fun showToast(msg: String)
 
     fun hideKeyboard()
 

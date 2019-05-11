@@ -10,10 +10,12 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.chupryna.socialapplication.R
 import com.chupryna.socialapplication.ui.authorization.AuthorizationActivity
+import com.chupryna.socialapplication.utils.loadPhoto
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -37,6 +39,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val headerView = navigationView.getHeaderView(0)
         headerView.findViewById<TextView>(R.id.fullName_user_tv).text = user.displayName
         headerView.findViewById<TextView>(R.id.email_use_tv).text = user.email
+        headerView.findViewById<ImageView>(R.id.header_photo_Iv).loadPhoto(user.phoneNumber)
 
         presenter.onPosts()
     }

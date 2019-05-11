@@ -73,7 +73,7 @@ class SignUpFragment : Fragment(), ISignUpView {
         passwordSignUpEt.error = null
     }
 
-    override fun showSignUpFailed(msg: String) {
+    override fun showToast(msg: String) {
         (activity as AuthorizationActivity).showToast(msg)
     }
 

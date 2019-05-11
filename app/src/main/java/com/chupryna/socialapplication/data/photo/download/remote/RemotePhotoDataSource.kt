@@ -2,7 +2,7 @@ package com.chupryna.socialapplication.data.photo.download.remote
 
 import com.chupryna.socialapplication.BuildConfig
 import com.chupryna.socialapplication.data.model.Photo
-import com.chupryna.socialapplication.data.photo.download.IPhotoDataSource
+import com.chupryna.socialapplication.data.photo.IPhotoDataSource
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -34,7 +34,7 @@ class RemotePhotoDataSource : IPhotoDataSource {
         photoApi = retrofit.create(PhotoApi::class.java)
     }
 
-    override fun getPhotosByAlbumID(id: Int, callback: IPhotoDataSource.IPhotoCallback) {
+    override fun getPhotosByAlbumID(id: Int, callback: IPhotoDataSource.IPhotoDownloadCallback) {
         val call = photoApi.getPhotosByAlbumID(id)
         call.enqueue(object: Callback<List<Photo>> {
             override fun onFailure(call: Call<List<Photo>>, t: Throwable) {

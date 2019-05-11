@@ -1,5 +1,6 @@
 package com.chupryna.socialapplication.data.firebase
 
+import android.net.Uri
 import com.chupryna.socialapplication.data.model.User
 import com.facebook.AccessToken
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -52,9 +53,10 @@ class FirebaseAuthorization : IFirebaseAuth {
         auth.createUserWithEmailAndPassword(user.email, user.password)
             .addOnSuccessListener { authResult ->
                 val currentUser = authResult.user
+                val photoUri = if (user.photoPath != null) Uri.parse(user.photoPath) else null
                 val userProfileChangeRequest = UserProfileChangeRequest.Builder()
                     .setDisplayName(user.fullName)
-                    .setPhotoUri(user.photoUri)
+                    .setPhotoUri(photoUri)
                     .build()
                 currentUser.updateProfile(userProfileChangeRequest)
 
