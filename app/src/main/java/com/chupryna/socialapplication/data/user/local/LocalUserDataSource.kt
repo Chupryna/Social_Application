@@ -17,6 +17,14 @@ class LocalUserDataSource(private val context: Context) : IUserDataSource {
             callback.onFailure()
     }
 
+    override fun getUserById(id: Int, iUserCallback: IUserDataSource.IUserCallback) {
+        val cachedUser = db.userDao().getUserByID(id)
+        if (cachedUser != null)
+            iUserCallback.onUserLoaded(listOf(cachedUser))
+        else
+            iUserCallback.onFailure()
+    }
+
     fun saveToDB(list: List<User>) {
         db.userDao().deleteAll()
         db.userDao().insert(list)

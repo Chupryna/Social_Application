@@ -21,4 +21,8 @@ interface IProfileView {
     fun setZipCode(code: String)
 
     fun showActivity(intent: Intent)
+
+    fun showProgress()
+
+    fun hideProgress()
 }

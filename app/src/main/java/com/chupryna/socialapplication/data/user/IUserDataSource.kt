@@ -10,4 +10,5 @@ interface IUserDataSource {
     }
 
     fun getUsers(callback: IUserCallback)
+    fun getUserById(id: Int, iUserCallback: IUserCallback)
 }

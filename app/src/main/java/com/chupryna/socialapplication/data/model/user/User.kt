@@ -22,7 +22,7 @@ data class User(
 
     @Embedded
     @SerializedName("address")
-    val address: Address,
+    val address: Address?,
 
     @SerializedName("phone")
     val phone: String = "",
@@ -32,5 +32,7 @@ data class User(
 
     @Embedded(prefix = "company")
     @SerializedName("company")
-    val company: Company
-)
+    val company: Company?
+) {
+    constructor(id: Int): this(id, "", "", "", null, "", "", null)
+}

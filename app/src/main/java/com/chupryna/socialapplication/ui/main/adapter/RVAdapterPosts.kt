@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.chupryna.socialapplication.R
 import com.chupryna.socialapplication.data.model.Post
+import com.chupryna.socialapplication.data.model.user.User
 import com.chupryna.socialapplication.ui.main.comment_fragment.CommentFragment
 import com.chupryna.socialapplication.ui.main.post_fragment.IPostView
+import com.chupryna.socialapplication.ui.main.profile_fragment.ProfileFragment
 import kotlinx.android.synthetic.main.fragment_item_post.view.*
 
 class RVAdapterPosts(
@@ -34,6 +37,7 @@ class RVAdapterPosts(
         holder.title.text = postsList[position].title
         holder.body.text = postsList[position].body
 
+        holder.userPhoto.setOnClickListener { view.replaceFragment(ProfileFragment(User(postsList[position].userId))) }
         holder.likeContainer.setOnClickListener { onLikeClick(holder) }
         holder.commentContainer.setOnClickListener { onCommentClick(position) }
         holder.shareContainer.setOnClickListener { onShareClick(position) }
@@ -69,7 +73,7 @@ class RVAdapterPosts(
     }
 
     class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //val userPhoto: ImageView = itemView.userPhotoInPostIv
+        val userPhoto: ImageView = itemView.userPhotoInPostIv
         val title: TextView = itemView.postTitleTv
         val body: TextView = itemView.postBodyTv
         var likeCb: CheckBox = itemView.likeCb

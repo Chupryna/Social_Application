@@ -9,11 +9,12 @@ import android.view.ViewGroup
 
 import com.chupryna.socialapplication.R
 import com.chupryna.socialapplication.data.model.user.User
+import com.chupryna.socialapplication.ui.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment(private val user: User) : Fragment(), IProfileView {
 
-    private val presenter by lazy { ProfilePresenter(this) }
+    private val presenter by lazy { ProfilePresenter(this, context!!) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_profile, container, false)
@@ -21,14 +22,17 @@ class ProfileFragment(private val user: User) : Fragment(), IProfileView {
 
     override fun onStart() {
         super.onStart()
-        presenter.showUserInfo(user)
+        if (user.name.isEmpty() || user.address == null || user.email.isEmpty() && user.id != 0)
+            presenter.loadUser(user.id)
+        else
+            presenter.showUserInfo(user)
         initListeners()
     }
 
     private fun initListeners() {
         emailProfileContainer.setOnClickListener { presenter.onEmail(emailProfileTv.text.toString()) }
         phoneProfileContainer.setOnClickListener { presenter.onPhone(phoneProfileTv.text.toString()) }
-        addressProfileContainer.setOnClickListener { presenter.onAddress(user.address.geo) }
+        addressProfileContainer.setOnClickListener { presenter.onAddress(user.address?.geo) }
         photoProfileIv.setOnClickListener { presenter.onPhoto(context!!) }
     }
 
@@ -66,5 +70,13 @@ class ProfileFragment(private val user: User) : Fragment(), IProfileView {
 
     override fun showActivity(intent: Intent) {
         startActivity(Intent.createChooser(intent, "Завершити дію"))
+    }
+
+    override fun showProgress() {
+        (activity as MainActivity).showProgress()
+    }
+
+    override fun hideProgress() {
+        (activity as MainActivity).hideProgress()
     }
 }

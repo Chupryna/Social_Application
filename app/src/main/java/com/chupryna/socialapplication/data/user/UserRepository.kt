@@ -5,16 +5,16 @@ import com.chupryna.socialapplication.data.model.user.User
 import com.chupryna.socialapplication.data.user.local.LocalUserDataSource
 import com.chupryna.socialapplication.data.user.remote.RemoteUserDataSource
 
-class UserRepository(private val context: Context) : IUserDataSource {
+class UserRepository(context: Context) : IUserDataSource {
 
     private val remoteUserDS = RemoteUserDataSource()
     private val localUserDS = LocalUserDataSource(context)
 
     override fun getUsers(callback: IUserDataSource.IUserCallback) {
-        loadFromRemote(callback)
+        loadUsersFromRemote(callback)
     }
 
-    private fun loadFromRemote(callback: IUserDataSource.IUserCallback) {
+    private fun loadUsersFromRemote(callback: IUserDataSource.IUserCallback) {
         remoteUserDS.getUsers(object : IUserDataSource.IUserCallback {
             override fun onUserLoaded(list: List<User>) {
                 callback.onUserLoaded(list)
@@ -22,13 +22,41 @@ class UserRepository(private val context: Context) : IUserDataSource {
             }
 
             override fun onFailure() {
-                loadFromLocal(callback)
+                loadUsersFromLocal(callback)
             }
         })
     }
 
-    private fun loadFromLocal(callback: IUserDataSource.IUserCallback) {
+    private fun loadUsersFromLocal(callback: IUserDataSource.IUserCallback) {
         localUserDS.getUsers(object: IUserDataSource.IUserCallback {
+            override fun onUserLoaded(list: List<User>) {
+                callback.onUserLoaded(list)
+            }
+
+            override fun onFailure() {
+                callback.onFailure()
+            }
+        })
+    }
+
+    override fun getUserById(id: Int, iUserCallback: IUserDataSource.IUserCallback) {
+        loadUserByIDFromRemote(id, iUserCallback)
+    }
+
+    private fun loadUserByIDFromRemote(id: Int, callback: IUserDataSource.IUserCallback) {
+        remoteUserDS.getUserById(id, object: IUserDataSource.IUserCallback {
+            override fun onUserLoaded(list: List<User>) {
+                callback.onUserLoaded(list)
+            }
+
+            override fun onFailure() {
+                loadUserByIDFromLocal(id, callback)
+            }
+        })
+    }
+
+    private fun loadUserByIDFromLocal(id: Int, callback: IUserDataSource.IUserCallback) {
+        localUserDS.getUserById(id, object: IUserDataSource.IUserCallback {
             override fun onUserLoaded(list: List<User>) {
                 callback.onUserLoaded(list)
             }
