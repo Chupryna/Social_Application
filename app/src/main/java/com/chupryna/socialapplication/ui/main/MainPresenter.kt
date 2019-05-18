@@ -25,7 +25,7 @@ class MainPresenter(private val view: IMainView) {
 
     fun onProfile() {
         view.closeDrawer()
-        view.replaceFragment(ProfileFragment())
+      //  view.replaceFragment(ProfileFragment())
         view.setTitle("Профіль")
     }
 

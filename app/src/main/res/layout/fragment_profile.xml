@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.profile_fragment.ProfileFragment">
+
+    <ImageView
+        android:id="@+id/photoProfileIv"
+        android:layout_width="100dp"
+        android:layout_height="135dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="contentDescription"/>
+
+    <TextView
+        android:id="@+id/fullNameProfileTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@id/photoProfileIv"
+        android:text="@string/lastName"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/photoProfileIv"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fullNameProfileTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/photoProfileIv"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/photoProfileIv"
+        app:layout_constraintTop_toBottomOf="@id/fullNameProfileTitleTv"
+        tools:text="Петренко Петро Петрович" />
+
+    <TextView
+        android:id="@+id/userNameProfileTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@id/photoProfileIv"
+        android:text="@string/username"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/photoProfileIv"
+        app:layout_constraintTop_toBottomOf="@id/fullNameProfileTv" />
+
+    <TextView
+        android:id="@+id/userNameProfileTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/photoProfileIv"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/photoProfileIv"
+        app:layout_constraintTop_toBottomOf="@id/userNameProfileTitleTv"
+        tools:text="Piter" />
+
+    <TextView
+        android:id="@+id/websiteProfileTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@id/photoProfileIv"
+        android:text="@string/website"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/photoProfileIv"
+        app:layout_constraintTop_toBottomOf="@id/userNameProfileTv" />
+
+    <TextView
+        android:id="@+id/websiteProfileTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/photoProfileIv"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/photoProfileIv"
+        app:layout_constraintTop_toBottomOf="@id/websiteProfileTitleTv"
+        tools:text="hildegard.com" />
+
+    <TextView
+        android:id="@+id/phoneProfileTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/phone"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/photoProfileIv" />
+
+    <LinearLayout
+        android:id="@+id/phoneProfileContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phoneProfileTitleTv">
+
+        <TextView
+            android:id="@+id/phoneProfileTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            tools:text="+380675412385" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@android:drawable/ic_menu_call"
+            tools:ignore="contentDescription"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/emailProfileTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/email"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phoneProfileContainer" />
+
+    <LinearLayout
+        android:id="@+id/emailProfileContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailProfileTitleTv">
+
+        <TextView
+            android:id="@+id/emailProfileTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            tools:text="pupil@ukr.net" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/sym_action_email"
+            tools:ignore="contentDescription" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/addressProfileTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/address"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailProfileContainer" />
+
+    <LinearLayout
+        android:id="@+id/addressProfileContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addressProfileTitleTv"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addressProfileTitleTv">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/addressProfileTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="Львів, вул. Героїв УПА" />
+
+            <TextView
+                android:id="@+id/zipCodeProfileTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                tools:text="Індекс: 92998-3874" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_mapmode"
+            tools:ignore="contentDescription"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/companyProfileTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/company"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addressProfileContainer" />
+
+    <TextView
+        android:id="@+id/companyProfileTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/companyProfileTitleTv"
+        tools:text="Romaguera-Crona" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

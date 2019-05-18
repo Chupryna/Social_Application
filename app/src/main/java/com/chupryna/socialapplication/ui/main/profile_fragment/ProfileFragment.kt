@@ -1,5 +1,6 @@
 package com.chupryna.socialapplication.ui.main.profile_fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,12 +8,63 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.chupryna.socialapplication.R
+import com.chupryna.socialapplication.data.model.user.User
+import kotlinx.android.synthetic.main.fragment_profile.*
 
-class ProfileFragment : Fragment(), IProfileView {
+class ProfileFragment(private val user: User) : Fragment(), IProfileView {
 
     private val presenter by lazy { ProfilePresenter(this) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.profile_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_profile, container, false)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        presenter.showUserInfo(user)
+        initListeners()
+    }
+
+    private fun initListeners() {
+        emailProfileContainer.setOnClickListener { presenter.onEmail(emailProfileTv.text.toString()) }
+        phoneProfileContainer.setOnClickListener { presenter.onPhone(phoneProfileTv.text.toString()) }
+        addressProfileContainer.setOnClickListener { presenter.onAddress(user.address.geo) }
+        photoProfileIv.setOnClickListener { presenter.onPhoto(context!!) }
+    }
+
+    override fun setFullName(name: String) {
+        fullNameProfileTv.text = name
+    }
+
+    override fun setUserName(name: String) {
+        userNameProfileTv.text = name
+    }
+
+    override fun setWebsite(website: String) {
+        websiteProfileTv.text = website
+    }
+
+    override fun setPhone(phone: String) {
+        phoneProfileTv.text = phone
+    }
+
+    override fun setEmail(email: String) {
+        emailProfileTv.text = email
+    }
+
+    override fun setCompany(company: String) {
+        companyProfileTv.text = company
+    }
+
+    override fun setAddress(address: String) {
+        addressProfileTv.text = address
+    }
+
+    override fun setZipCode(code: String) {
+        zipCodeProfileTv.text = code
+    }
+
+    override fun showActivity(intent: Intent) {
+        startActivity(Intent.createChooser(intent, "Завершити дію"))
     }
 }

@@ -27,7 +27,7 @@ class RVAdapterFriends(private val listFriends: List<User>,
         holder.fullName.text = String.format("%s (%s)", listFriends[position].name, listFriends[position].username)
         holder.city.text = listFriends[position].address.city
 
-        holder.itemView.setOnClickListener { view.replaceFragment(ProfileFragment()) }
+        holder.itemView.setOnClickListener { view.replaceFragment(ProfileFragment(listFriends[position])) }
     }
 
     class FriendViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
