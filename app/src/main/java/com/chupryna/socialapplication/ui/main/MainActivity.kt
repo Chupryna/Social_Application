@@ -99,12 +99,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_tools -> {
 
             }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_send -> {
-
-            }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
