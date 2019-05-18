@@ -93,8 +93,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_albums -> {
                 presenter.onAlbums()
             }
-            R.id.nav_slideshow -> {
-
+            R.id.nav_friends -> {
+                presenter.onFriends()
             }
             R.id.nav_tools -> {
 

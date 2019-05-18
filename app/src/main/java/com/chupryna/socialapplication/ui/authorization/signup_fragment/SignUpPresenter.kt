@@ -7,7 +7,7 @@ import android.util.Patterns
 import com.chupryna.socialapplication.data.firebase.FirebaseAuthorization
 import com.chupryna.socialapplication.data.firebase.IFirebaseAuth
 import com.chupryna.socialapplication.data.model.ImageUploadResponse
-import com.chupryna.socialapplication.data.model.User
+import com.chupryna.socialapplication.data.model.UserFirebase
 import com.chupryna.socialapplication.data.photo.IPhotoDataSource
 import com.chupryna.socialapplication.data.photo.PhotoRepository
 import com.chupryna.socialapplication.utils.CompressImage
@@ -55,7 +55,7 @@ class SignUpPresenter(
     }
 
     private fun createAccount(fullName: String, email: String, password: String, photoPath: String?) {
-        model.createNewAccount(User(fullName, email, password, photoPath), object : IFirebaseAuth.FirebaseUserCallback {
+        model.createNewAccount(UserFirebase(fullName, email, password, photoPath), object : IFirebaseAuth.FirebaseUserCallback {
             override fun onSuccess(user: FirebaseUser) {
                 view.hideProgress()
                 onSignIn()

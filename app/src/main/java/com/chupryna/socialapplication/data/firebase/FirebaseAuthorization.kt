@@ -1,7 +1,7 @@
 package com.chupryna.socialapplication.data.firebase
 
 import android.net.Uri
-import com.chupryna.socialapplication.data.model.User
+import com.chupryna.socialapplication.data.model.UserFirebase
 import com.facebook.AccessToken
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.*
@@ -48,7 +48,7 @@ class FirebaseAuthorization : IFirebaseAuth {
             }
     }
 
-    override fun createNewAccount(user: User, callback: IFirebaseAuth.FirebaseUserCallback) {
+    override fun createNewAccount(user: UserFirebase, callback: IFirebaseAuth.FirebaseUserCallback) {
         val auth = FirebaseAuth.getInstance()
         auth.createUserWithEmailAndPassword(user.email, user.password)
             .addOnSuccessListener { authResult ->

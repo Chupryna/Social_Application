@@ -1,6 +1,6 @@
 package com.chupryna.socialapplication.data.firebase
 
-import com.chupryna.socialapplication.data.model.User
+import com.chupryna.socialapplication.data.model.UserFirebase
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.FirebaseUser
 import com.facebook.AccessToken
@@ -35,7 +35,7 @@ interface IFirebaseAuth {
 
     fun attemptSignInWithFacebook(token: AccessToken, callback: FirebaseUserCallback)
 
-    fun createNewAccount(user: User, callback: FirebaseUserCallback)
+    fun createNewAccount(user: UserFirebase, callback: FirebaseUserCallback)
 
     fun sendPasswordReset(email: String, callback: FirebaseCallback)
 

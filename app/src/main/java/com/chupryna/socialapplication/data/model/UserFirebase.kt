@@ -1,6 +1,6 @@
 package com.chupryna.socialapplication.data.model
 
-data class User(
+data class UserFirebase(
     val fullName: String,
     val email: String,
     val password: String,
