@@ -6,6 +6,7 @@ import com.chupryna.socialapplication.ui.main.album_fragment.AlbumFragment
 import com.chupryna.socialapplication.ui.main.friend_fragment.FriendFragment
 import com.chupryna.socialapplication.ui.main.post_fragment.PostFragment
 import com.chupryna.socialapplication.ui.main.profile_fragment.ProfileFragment
+import com.chupryna.socialapplication.ui.main.todo_fragment.ToDoFragment
 
 class MainPresenter(private val view: IMainView) {
 
@@ -26,7 +27,7 @@ class MainPresenter(private val view: IMainView) {
     fun onProfile() {
         view.closeDrawer()
       //  view.replaceFragment(ProfileFragment())
-        view.setTitle("Профіль")
+      //  view.setTitle("Профіль")
     }
 
     fun onAlbums() {
@@ -45,5 +46,11 @@ class MainPresenter(private val view: IMainView) {
         view.closeDrawer()
         view.replaceFragment(FriendFragment())
         view.setTitle("Друзі")
+    }
+
+    fun onToDo() {
+        view.closeDrawer()
+        view.replaceFragment(ToDoFragment())
+        view.setTitle("To Do")
     }
 }

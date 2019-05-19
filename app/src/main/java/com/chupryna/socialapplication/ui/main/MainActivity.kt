@@ -96,8 +96,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_friends -> {
                 presenter.onFriends()
             }
-            R.id.nav_tools -> {
-
+            R.id.nav_todo -> {
+                presenter.onToDo()
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START)
