@@ -21,8 +21,9 @@ class ToDoRepository(context: Context) : IToDoDataSource{
                 localToDoDS.saveToDB(list)
             }
 
-            override fun onFailure() {
-               loadFromLocal(id, callback)
+            override fun onFailure(msg: String) {
+                callback.onFailure(msg)
+                loadFromLocal(id, callback)
             }
         })
     }
@@ -33,8 +34,8 @@ class ToDoRepository(context: Context) : IToDoDataSource{
                 callback.onToDoLoaded(list)
             }
 
-            override fun onFailure() {
-                callback.onFailure()
+            override fun onFailure(msg: String) {
+                callback.onFailure(msg)
             }
         })
     }

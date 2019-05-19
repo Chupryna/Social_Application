@@ -14,7 +14,7 @@ class LocalUserDataSource(private val context: Context) : IUserDataSource {
         if (cachedUsers.isNotEmpty())
             callback.onUserLoaded(cachedUsers)
         else
-            callback.onFailure()
+            callback.onFailure("")
     }
 
     override fun getUserById(id: Int, iUserCallback: IUserDataSource.IUserCallback) {
@@ -22,7 +22,7 @@ class LocalUserDataSource(private val context: Context) : IUserDataSource {
         if (cachedUser != null)
             iUserCallback.onUserLoaded(listOf(cachedUser))
         else
-            iUserCallback.onFailure()
+            iUserCallback.onFailure("")
     }
 
     fun saveToDB(list: List<User>) {

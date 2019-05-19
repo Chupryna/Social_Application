@@ -6,7 +6,7 @@ interface IUserDataSource {
 
     interface IUserCallback {
         fun onUserLoaded(list: List<User>)
-        fun onFailure()
+        fun onFailure(msg: String)
     }
 
     fun getUsers(callback: IUserCallback)

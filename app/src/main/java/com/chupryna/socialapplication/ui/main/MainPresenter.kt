@@ -5,7 +5,6 @@ import com.chupryna.socialapplication.data.firebase.IFirebaseAuth
 import com.chupryna.socialapplication.ui.main.album_fragment.AlbumFragment
 import com.chupryna.socialapplication.ui.main.friend_fragment.FriendFragment
 import com.chupryna.socialapplication.ui.main.post_fragment.PostFragment
-import com.chupryna.socialapplication.ui.main.profile_fragment.ProfileFragment
 import com.chupryna.socialapplication.ui.main.todo_fragment.ToDoFragment
 
 class MainPresenter(private val view: IMainView) {

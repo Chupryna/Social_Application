@@ -6,7 +6,7 @@ interface ICommentDataSource {
 
     interface ICommentCallback {
         fun onCommentLoaded(list: List<Comment>)
-        fun onFailure()
+        fun onFailure(msg: String)
     }
 
     fun getCommentsByPostID(id: Int, callback: ICommentCallback)

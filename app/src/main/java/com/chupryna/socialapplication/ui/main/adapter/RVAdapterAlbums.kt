@@ -3,7 +3,6 @@ package com.chupryna.socialapplication.ui.main.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.chupryna.socialapplication.R
@@ -33,7 +32,7 @@ class RVAdapterAlbums(albums: List<Album>, iAlbumView: IAlbumView) : RecyclerVie
     }
 
     class AlbumsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val image: ImageView = itemView.albumItemImageView
+        //val image: ImageView = itemView.albumItemImageView
         val title: TextView = itemView.albumTitleTv
     }
 }

@@ -6,7 +6,7 @@ interface IAlbumDataSource {
 
     interface IAlbumCallback {
         fun onAlbumLoaded(list: List<Album>)
-        fun onFailure()
+        fun onFailure(msg: String)
     }
 
     fun getAlbums(callback: IAlbumCallback)

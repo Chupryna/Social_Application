@@ -8,4 +8,6 @@ interface IToDoView {
     fun showProgress()
 
     fun hideProgress()
+
+    fun showToast(msg: String)
 }

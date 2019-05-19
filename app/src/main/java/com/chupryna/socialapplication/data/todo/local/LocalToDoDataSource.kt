@@ -14,7 +14,7 @@ class LocalToDoDataSource(context: Context) : IToDoDataSource {
         if (cachedToDo.isNotEmpty())
             callback.onToDoLoaded(cachedToDo)
         else
-            callback.onFailure()
+            callback.onFailure("")
     }
 
     fun saveToDB(list: List<ToDo>) {

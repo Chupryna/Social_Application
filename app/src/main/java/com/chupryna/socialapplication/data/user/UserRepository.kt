@@ -21,7 +21,8 @@ class UserRepository(context: Context) : IUserDataSource {
                 localUserDS.saveToDB(list)
             }
 
-            override fun onFailure() {
+            override fun onFailure(msg: String) {
+                callback.onFailure(msg)
                 loadUsersFromLocal(callback)
             }
         })
@@ -33,8 +34,8 @@ class UserRepository(context: Context) : IUserDataSource {
                 callback.onUserLoaded(list)
             }
 
-            override fun onFailure() {
-                callback.onFailure()
+            override fun onFailure(msg: String) {
+                callback.onFailure(msg)
             }
         })
     }
@@ -49,7 +50,8 @@ class UserRepository(context: Context) : IUserDataSource {
                 callback.onUserLoaded(list)
             }
 
-            override fun onFailure() {
+            override fun onFailure(msg: String) {
+                callback.onFailure(msg)
                 loadUserByIDFromLocal(id, callback)
             }
         })
@@ -61,8 +63,8 @@ class UserRepository(context: Context) : IUserDataSource {
                 callback.onUserLoaded(list)
             }
 
-            override fun onFailure() {
-                callback.onFailure()
+            override fun onFailure(msg: String) {
+                callback.onFailure(msg)
             }
         })
     }

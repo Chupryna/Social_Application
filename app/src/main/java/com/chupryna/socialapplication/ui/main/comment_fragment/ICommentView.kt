@@ -8,4 +8,6 @@ interface ICommentView {
     fun showProgress()
 
     fun hideProgress()
+
+    fun showToast(msg: String)
 }

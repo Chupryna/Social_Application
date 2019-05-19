@@ -51,31 +51,7 @@ class SignInFragment : Fragment(), ISignInView {
         resetPasswordTv.setOnClickListener { presenter.onResetPassword() }
     }
 
-   /* private fun onSignInWithFacebook() {
-        signInWithFacebookBtn.setReadPermissions("email", "public_profile")
-        signInWithFacebookBtn.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-            override fun onSuccess(loginResult: LoginResult) {
-                presenter.firebaseSignInWithFacebook(loginResult.accessToken)
-            }
-
-            override fun onCancel() {
-                println("cancel")
-            }
-
-            override fun onError(error: FacebookException) {
-                error.printStackTrace()
-            }
-        })
-    }*/
-
     private fun onSignInWithGoogle() {
-        /*val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        val googleSignInClient = GoogleSignIn.getClient(this.getFragmentContext(), gso)
-        val signInIntent = googleSignInClient.signInIntent*/
         val signInIntent = MethodAuthorization().signInWithGoogle(getFragmentContext())
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }

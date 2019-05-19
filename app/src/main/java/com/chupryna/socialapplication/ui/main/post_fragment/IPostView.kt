@@ -18,4 +18,6 @@ interface IPostView {
     fun updateAdapter(list: List<Post>)
 
     fun replaceFragment(fragment: Fragment)
+
+    fun showToast(msg: String)
 }

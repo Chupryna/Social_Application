@@ -14,7 +14,7 @@ class LocalPostDataSource(private val context: Context) : IPostDataSource {
         if (cashedPosts.isNotEmpty())
             callback.onPostLoaded(cashedPosts)
         else
-            callback.onFailure()
+            callback.onFailure("")
     }
 
     override fun getPostsByUserID(id: Int, callback: IPostDataSource.IPostCallback) {

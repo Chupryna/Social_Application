@@ -4,20 +4,14 @@ import android.content.Context
 import com.chupryna.socialapplication.data.album.local.LocalAlbumDataSource
 import com.chupryna.socialapplication.data.album.remote.RemoteAlbumDataSource
 import com.chupryna.socialapplication.data.model.Album
-import com.chupryna.socialapplication.utils.isNetworkAvailable
 
-
-class AlbumRepository(private val context: Context) : IAlbumDataSource {
+class AlbumRepository(context: Context) : IAlbumDataSource {
 
     private val localAlbumDS = LocalAlbumDataSource(context)
     private val remoteAlbumDS = RemoteAlbumDataSource()
 
     override fun getAlbums(callback: IAlbumDataSource.IAlbumCallback) {
-        if (context.isNetworkAvailable()) {
-            loadAlbumsFromRemote(callback)
-        } else {
-            loadAlbumsFromLocal(callback)
-        }
+        loadAlbumsFromRemote(callback)
     }
 
     private fun loadAlbumsFromLocal(callback: IAlbumDataSource.IAlbumCallback) {
@@ -26,8 +20,8 @@ class AlbumRepository(private val context: Context) : IAlbumDataSource {
                 callback.onAlbumLoaded(list)
             }
 
-            override fun onFailure() {
-                callback.onFailure()
+            override fun onFailure(msg: String) {
+                callback.onFailure(msg)
             }
         })
     }
@@ -39,7 +33,8 @@ class AlbumRepository(private val context: Context) : IAlbumDataSource {
                 localAlbumDS.saveToDB(list)
             }
 
-            override fun onFailure() {
+            override fun onFailure(msg: String) {
+                callback.onFailure(msg)
                 loadAlbumsFromLocal(callback)
             }
         })

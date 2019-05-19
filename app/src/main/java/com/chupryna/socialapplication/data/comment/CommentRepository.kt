@@ -21,7 +21,8 @@ class CommentRepository(context: Context) : ICommentDataSource {
                 localCommentDS.saveToDB(list)
             }
 
-            override fun onFailure() {
+            override fun onFailure(msg: String) {
+                callback.onFailure(msg)
                 loadFromLocal(id, callback)
             }
         })
@@ -33,8 +34,8 @@ class CommentRepository(context: Context) : ICommentDataSource {
                 callback.onCommentLoaded(list)
             }
 
-            override fun onFailure() {
-                callback.onFailure()
+            override fun onFailure(msg: String) {
+                callback.onFailure(msg)
             }
         })
     }

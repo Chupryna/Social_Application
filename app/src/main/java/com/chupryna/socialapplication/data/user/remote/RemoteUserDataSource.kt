@@ -33,14 +33,14 @@ class RemoteUserDataSource : IUserDataSource {
     override fun getUsers(callback: IUserDataSource.IUserCallback) {
         userApi.getUsers().enqueue(object: Callback<List<User>> {
             override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                callback.onFailure()
+                callback.onFailure("Не вдалося отримати оновлені дані. Перевірте з'єднання")
             }
 
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                 if (response.body() != null)
                     callback.onUserLoaded(response.body()!!)
                 else
-                    callback.onFailure()
+                    callback.onFailure("Не вдалося отримати оновлені дані. Перевірте з'єднання")
             }
         })
     }
@@ -48,14 +48,14 @@ class RemoteUserDataSource : IUserDataSource {
     override fun getUserById(id: Int, iUserCallback: IUserDataSource.IUserCallback) {
         userApi.getUserByID(id).enqueue(object: Callback<List<User>> {
             override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                iUserCallback.onFailure()
+                iUserCallback.onFailure("Не вдалося отримати оновлені дані. Перевірте з'єднання")
             }
 
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                if (response.body() != null)
                    iUserCallback.onUserLoaded(response.body()!!)
                 else
-                   iUserCallback.onFailure()
+                   iUserCallback.onFailure("Не вдалося отримати оновлені дані. Перевірте з'єднання")
             }
         })
     }

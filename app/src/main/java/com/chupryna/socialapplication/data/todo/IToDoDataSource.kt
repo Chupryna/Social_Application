@@ -6,7 +6,7 @@ interface IToDoDataSource {
 
     interface IToDoCallback {
         fun onToDoLoaded(list: List<ToDo>)
-        fun onFailure()
+        fun onFailure(msg: String)
     }
 
     fun getToDoByUserID(id: Int, callback: IToDoCallback)

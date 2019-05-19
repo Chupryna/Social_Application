@@ -6,7 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface CommentApi {
-
     @GET("comments")
     fun getCommentsByPostID(@Query("postId") postId: Int): Call<List<Comment>>
 }

@@ -50,11 +50,11 @@ class RemoteAlbumDataSource : IAlbumDataSource {
                 if (response.body() != null)
                     callback.onAlbumLoaded(response.body()!!)
                 else
-                    callback.onFailure()
+                    callback.onFailure("Не вдалося отримати оновлені дані. Перевірте з'єднання")
             }
 
             override fun onFailure(call: Call<List<Album>>, t: Throwable) {
-                callback.onFailure()
+                callback.onFailure("Не вдалося отримати оновлені дані. Перевірте з'єднання")
             }
         })
     }

@@ -24,14 +24,14 @@ class RemoteToDoDataSource : IToDoDataSource {
     override fun getToDoByUserID(id: Int, callback: IToDoDataSource.IToDoCallback) {
         toDoApi.getToDoByUserID(id).enqueue(object: Callback<List<ToDo>> {
             override fun onFailure(call: Call<List<ToDo>>, t: Throwable) {
-                callback.onFailure()
+                callback.onFailure("Не вдалося отримати оновлені дані. Перевірте з'єднання")
             }
 
             override fun onResponse(call: Call<List<ToDo>>, response: Response<List<ToDo>>) {
                 if (response.body() != null)
                     callback.onToDoLoaded(response.body()!!)
                 else
-                    callback.onFailure()
+                    callback.onFailure("Не вдалося отримати оновлені дані. Перевірте з'єднання")
             }
         })
     }

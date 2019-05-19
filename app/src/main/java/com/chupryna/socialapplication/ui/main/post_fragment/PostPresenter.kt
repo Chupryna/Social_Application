@@ -19,8 +19,10 @@ class PostPresenter(
                 view.hideProgress()
             }
 
-            override fun onFailure() {
+            override fun onFailure(msg: String) {
                 view.hideProgress()
+                if (msg.isNotEmpty())
+                    view.showToast(msg)
             }
         })
     }
@@ -33,8 +35,10 @@ class PostPresenter(
                 view.hideRefreshing()
             }
 
-            override fun onFailure() {
+            override fun onFailure(msg: String) {
                 view.hideRefreshing()
+                if (msg.isNotEmpty())
+                    view.showToast(msg)
             }
         })
     }

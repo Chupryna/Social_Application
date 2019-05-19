@@ -5,7 +5,7 @@ import com.chupryna.socialapplication.data.model.Post
 interface IPostDataSource {
     interface IPostCallback {
         fun onPostLoaded(list: List<Post>)
-        fun onFailure()
+        fun onFailure(msg: String)
     }
 
     fun getPosts(callback: IPostCallback)

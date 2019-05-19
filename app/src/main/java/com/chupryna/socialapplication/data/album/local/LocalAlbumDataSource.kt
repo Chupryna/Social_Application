@@ -14,7 +14,7 @@ class LocalAlbumDataSource(private val context: Context) : IAlbumDataSource {
         if (cashedAlbums.isNotEmpty())
             callback.onAlbumLoaded(cashedAlbums)
         else
-            callback.onFailure()
+            callback.onFailure("")
     }
 
     override fun getAlbumsByUserID(id: Int, callback: IAlbumDataSource.IAlbumCallback) {
@@ -22,7 +22,7 @@ class LocalAlbumDataSource(private val context: Context) : IAlbumDataSource {
         if (cashedAlbums.isNotEmpty())
             callback.onAlbumLoaded(cashedAlbums)
         else
-            callback.onFailure()
+            callback.onFailure("")
     }
 
     fun saveToDB(list: List<Album>) {

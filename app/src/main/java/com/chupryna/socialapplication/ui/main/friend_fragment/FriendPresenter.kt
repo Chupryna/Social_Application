@@ -18,8 +18,10 @@ class FriendPresenter(private val view: IFriendView,
                 view.hideProgress()
             }
 
-            override fun onFailure() {
+            override fun onFailure(msg: String) {
                 view.hideProgress()
+                if (msg.isNotEmpty())
+                    view.showToast(msg)
             }
         })
     }

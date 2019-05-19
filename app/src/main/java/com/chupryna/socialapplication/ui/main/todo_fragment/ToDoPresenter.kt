@@ -10,16 +10,18 @@ class ToDoPresenter(private val view: IToDoView,
 
     private val model by lazy { ToDoRepository(context) }
 
-    fun loadToDo() {
+    fun loadToDo(userId: Int) {
         view.showProgress()
-        model.getToDoByUserID(1, object: IToDoDataSource.IToDoCallback {
+        model.getToDoByUserID(userId, object: IToDoDataSource.IToDoCallback {
             override fun onToDoLoaded(list: List<ToDo>) {
                 view.setAdapter(list)
                 view.hideProgress()
             }
 
-            override fun onFailure() {
+            override fun onFailure(msg: String) {
                 view.hideProgress()
+                if (msg.isNotEmpty())
+                    view.showToast(msg)
             }
         })
     }

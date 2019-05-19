@@ -14,7 +14,7 @@ class LocalCommentDataSource(context: Context) : ICommentDataSource {
         if (cachedComments.isNotEmpty())
             callback.onCommentLoaded(cachedComments)
         else
-            callback.onFailure()
+            callback.onFailure("")
     }
 
     fun saveToDB(list: List<Comment>) {

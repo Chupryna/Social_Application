@@ -24,14 +24,14 @@ class RemoteCommentDataSource : ICommentDataSource {
     override fun getCommentsByPostID(id: Int, callback: ICommentDataSource.ICommentCallback) {
         commentApi.getCommentsByPostID(id).enqueue(object: Callback<List<Comment>> {
             override fun onFailure(call: Call<List<Comment>>, t: Throwable) {
-                callback.onFailure()
+                callback.onFailure("Не вдалося отримати оновлені дані. Перевірте з'єднання")
             }
 
             override fun onResponse(call: Call<List<Comment>>, response: Response<List<Comment>>) {
                 if (response.body() != null)
                     callback.onCommentLoaded(response.body()!!)
                 else
-                    callback.onFailure()
+                    callback.onFailure("Не вдалося отримати оновлені дані. Перевірте з'єднання")
             }
         })
     }

@@ -4,18 +4,14 @@ import android.content.Context
 import com.chupryna.socialapplication.data.model.Post
 import com.chupryna.socialapplication.data.post.local.LocalPostDataSource
 import com.chupryna.socialapplication.data.post.remote.RemotePostDataSource
-import com.chupryna.socialapplication.utils.isNetworkAvailable
 
-class PostRepository(private val context: Context) : IPostDataSource {
+class PostRepository(context: Context) : IPostDataSource {
 
     private val remotePostDS = RemotePostDataSource()
     private val localPostDS = LocalPostDataSource(context)
 
     override fun getPosts(callback: IPostDataSource.IPostCallback) {
-        if (context.isNetworkAvailable())
-            loadFromRemote(callback)
-        else
-            loadFromLocal(callback)
+        loadFromRemote(callback)
     }
 
     private fun loadFromRemote(callback: IPostDataSource.IPostCallback) {
@@ -25,7 +21,8 @@ class PostRepository(private val context: Context) : IPostDataSource {
                 localPostDS.saveToDB(list)
             }
 
-            override fun onFailure() {
+            override fun onFailure(msg: String) {
+                callback.onFailure(msg)
                 loadFromLocal(callback)
             }
         })
@@ -37,8 +34,8 @@ class PostRepository(private val context: Context) : IPostDataSource {
                 callback.onPostLoaded(list)
             }
 
-            override fun onFailure() {
-                callback.onFailure()
+            override fun onFailure(msg: String) {
+                callback.onFailure(msg)
             }
         })
     }

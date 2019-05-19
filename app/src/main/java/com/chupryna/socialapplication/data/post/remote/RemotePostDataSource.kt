@@ -48,14 +48,14 @@ class RemotePostDataSource : IPostDataSource {
     private fun executeCall(call: Call<List<Post>>, callback: IPostDataSource.IPostCallback) {
         call.enqueue(object: Callback<List<Post>> {
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
-                callback.onFailure()
+                callback.onFailure("Не вдалося отримати оновлені дані. Перевірте з'єднання")
             }
 
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
                 if (response.body() != null)
                     callback.onPostLoaded(response.body()!!)
                 else
-                    callback.onFailure()
+                    callback.onFailure("Не вдалося отримати оновлені дані. Перевірте з'єднання")
             }
         } )
     }
