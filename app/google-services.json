@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "489778925008",
+    "firebase_url": "https://social-application-578e7.firebaseio.com",
+    "project_id": "social-application-578e7",
+    "storage_bucket": "social-application-578e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489778925008:android:f541a1ce700558bf",
+        "android_client_info": {
+          "package_name": "com.chupryna.socialapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "489778925008-tf8o0h1ft8alt6nbk43tm5mos7b40mj8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chupryna.socialapplication",
+            "certificate_hash": "b0ca5741635418078ea3284d154f346541a26116"
+          }
+        },
+        {
+          "client_id": "489778925008-3g9jktgrv0f7ne9320qfen2kk7o74t3m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtj6fwH6A5B3dytPak2_gtmxIzLAG5N-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "489778925008-3g9jktgrv0f7ne9320qfen2kk7o74t3m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

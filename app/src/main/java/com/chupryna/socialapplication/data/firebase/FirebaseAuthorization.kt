@@ -12,7 +12,9 @@ class FirebaseAuthorization : IFirebaseAuth {
         val auth = FirebaseAuth.getInstance()
         auth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener { authResult ->
-                callback.onSuccess(authResult.user)
+                val user = authResult.user
+                if (user != null)
+                    callback.onSuccess(user)
             }
             .addOnFailureListener { exception ->
                 when (exception) {
@@ -37,7 +39,9 @@ class FirebaseAuthorization : IFirebaseAuth {
         val auth = FirebaseAuth.getInstance()
         auth.signInWithCredential(credential)
             .addOnSuccessListener { authResult ->
-                callback.onSuccess(authResult.user)
+                val user = authResult.user
+                if (user != null)
+                    callback.onSuccess(user)
             }
             .addOnFailureListener { exception ->
                 when (exception) {
@@ -52,7 +56,7 @@ class FirebaseAuthorization : IFirebaseAuth {
         val auth = FirebaseAuth.getInstance()
         auth.createUserWithEmailAndPassword(user.email, user.password)
             .addOnSuccessListener { authResult ->
-                val currentUser = authResult.user
+                val currentUser = authResult.user ?: return@addOnSuccessListener
                 val photoUri = if (user.photoPath != null) Uri.parse(user.photoPath) else null
                 val userProfileChangeRequest = UserProfileChangeRequest.Builder()
                     .setDisplayName(user.fullName)
